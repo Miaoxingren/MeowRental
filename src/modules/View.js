@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'white'
+    backgroundColor: '#f3f6fb'
   },
   button: {
     textAlign: 'center',

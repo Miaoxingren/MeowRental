@@ -19,31 +19,13 @@ const tabs = [{
 // this will start our app
 Navigation.startTabBasedApp({
     tabs,
-    tabsStyle: {
-        tabBarBackgroundColor: '#003a66',
-        navBarButtonColor: '#ffffff',
-        tabBarButtonColor: '#ffffff',
-        navBarTextColor: '#ffffff',
-        tabBarSelectedButtonColor: '#ff505c',
-        navigationBarColor: '#003a66',
-        navBarBackgroundColor: '#003a66',
-        statusBarColor: '#002b4c',
-        tabFontFamily: 'BioRhyme-Bold',
-    },
     appStyle: {
-        tabBarBackgroundColor: '#003a66',
-        navBarButtonColor: '#ffffff',
-        tabBarButtonColor: '#ffffff',
-        navBarTextColor: '#ffffff',
-        tabBarSelectedButtonColor: '#ff505c',
-        navigationBarColor: '#003a66',
-        navBarBackgroundColor: '#003a66',
-        statusBarColor: '#002b4c',
-        tabFontFamily: 'BioRhyme-Bold',
-    // },
-    // drawer: {
-    //     left: {
-    //         screen: 'example.Types.Drawer'
-    //     }
+        tabBarButtonColor: '#9aa099',
+        tabBarSelectedButtonColor: '#2e291e',
+        tabBarBackgroundColor: '#abc9bd',
+
+        navBarBackgroundColor: '#abc9bd',
+        navBarTextColor: '#2e291e',
+        navBarButtonColor: '#2e291e'
     }
 });
