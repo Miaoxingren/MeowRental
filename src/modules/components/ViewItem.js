@@ -19,7 +19,7 @@ class ViewItemHeader extends Component {
     render() {
         return (
             <View style={styles.header}>
-                <Text style={styles.text}>{this.props.title}</Text>
+                <Text style={styles.headerText}>{this.props.title}</Text>
             </View>
         );
     }
@@ -32,10 +32,23 @@ class Row extends Component {
 
     render() {
         return (
-            <Text style={[styles.row, {textAlign: this.props.align}]}>{this.props.text}</Text>
+            <Text style={[styles.row, {textAlign: this.props.align || 'left'}]}>{this.props.text}</Text>
         );
     }
 }
+
+class TotalRow extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <Text style={[styles.totalRow, {textAlign: this.props.align || 'left'}]}>{this.props.text}</Text>
+        );
+    }
+}
+
 
 class RentalDetail extends Component {
     constructor(props) {
@@ -51,20 +64,32 @@ class RentalDetail extends Component {
         return (
             <View style={styles.detail}>
                 <View style={{flex: 1}}>
+                    <Row text={lang.waterL} align='right'/>
+                    <Row text={lang.waterT} align='right'/>
+                    <Row text={lang.waterUse} align='right'/>
+                    <Row text={lang.electricL} align='right'/>
+                    <Row text={lang.electricT} align='right'/>
+                    <Row text={lang.electricUse} align='right'/>
                     <Row text={lang.water} align='right'/>
                     <Row text={lang.electric} align='right'/>
                     <Row text={lang.house} align='right'/>
                     <Row text={lang.manage} align='right'/>
                     <Row text={lang.net} align='right'/>
-                    <Row text={lang.total} align='right'/>
+                    <TotalRow text={lang.total} align='right'/>
                 </View>
                 <View style={{flex: 1}}>
-                    <Row text={this.props.rental.water} align='left'/>
-                    <Row text={this.props.rental.electric} align='left'/>
-                    <Row text={this.props.rental.house} align='left'/>
-                    <Row text={this.props.rental.manage} align='left'/>
-                    <Row text={this.props.rental.net} align='left'/>
-                    <Row text={total} align='left'/>
+                    <Row text={this.props.rental.waterL}/>
+                    <Row text={this.props.rental.waterT}/>
+                    <Row text={this.props.rental.waterUse}/>
+                    <Row text={this.props.rental.electricL}/>
+                    <Row text={this.props.rental.electricT}/>
+                    <Row text={this.props.rental.electricUse}/>
+                    <Row text={this.props.rental.water}/>
+                    <Row text={this.props.rental.electric}/>
+                    <Row text={this.props.rental.house}/>
+                    <Row text={this.props.rental.manage}/>
+                    <Row text={this.props.rental.net}/>
+                    <TotalRow text={total} align='left'/>
                 </View>
             </View>
         );
@@ -93,7 +118,7 @@ export default class ViewItem extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.item}>
                 <ViewItemHeader title={this.props.title} />
                 <ViewItemDetail empty={this.props.empty} rental={this.props.rental} />
             </View>

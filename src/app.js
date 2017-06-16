@@ -20,17 +20,17 @@ const tabs = [{
 Navigation.startTabBasedApp({
     tabs,
     appStyle: {
-        statusBarColor: '#abc9bd',
+        statusBarColor: '#79B0BA',
 
-        tabBarButtonColor: '#9aa099',
-        tabBarSelectedButtonColor: '#2e291e',
-        tabBarBackgroundColor: '#abc9bd',
+        tabBarButtonColor: '#426C68',
+        tabBarSelectedButtonColor: '#252A1E',
+        tabBarBackgroundColor: '#79B0BA',
 
-        navBarTextColor: '#2e291e',
-        navBarButtonColor: '#2e291e',
-        navBarBackgroundColor: '#abc9bd',
+        navBarTextColor: '#252A1E',
+        navBarButtonColor: '#252A1E',
+        navBarBackgroundColor: '#79B0BA',
         navBarHideOnScroll: true,
 
-        screenBackgroundColor: '#fff',
+        screenBackgroundColor: '#eee',
     }
 });
