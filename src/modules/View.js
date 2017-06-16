@@ -1,44 +1,39 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  Button
+    Text,
+    View,
+    ScrollView,
+    TouchableOpacity,
+    StyleSheet,
+    Button,
+    SectionList
 } from 'react-native';
+import data from './data';
+import ViewItem from './components/ViewItem';
+import styles from './styles/View';
 
-export default class CustomNavBarScreen extends Component {
-  static navigatorStyle = {
-    drawUnderTabBar: true,
-    navBarCustomView: 'example.CustomNavBar',
-    navBarCustomViewInitialProps: {name: 'Hi Custom'}
-  };
+const renderSectionHeader = ({section}) => (
+    <View style={styles.section}>
+        <Text style={styles.sectionText}>{section.key} 楼</Text>
+    </View>
+);
 
+export default class ViewScreen extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-      </View>
-    );
-  }
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <SectionList
+                    renderSectionHeader={renderSectionHeader}
+                    renderItem={({item}) => <ViewItem title={item.title} empty={item.empty} rental={item.rental} />}
+                    sections={data}
+                />
+            </View>
+        );
+    }
 
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#f3f6fb'
-  },
-  button: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginBottom: 10,
-    marginTop:10,
-    color: 'blue'
-  }
-});
