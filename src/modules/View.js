@@ -28,6 +28,7 @@ export default class ViewScreen extends Component {
         return (
             <View style={styles.container}>
                 <SectionList
+                    stickySectionHeadersEnabled={true}
                     renderSectionHeader={renderSectionHeader}
                     renderItem={({item}) => <ViewItem title={item.title} empty={item.empty} rental={item.rental} />}
                     sections={data}

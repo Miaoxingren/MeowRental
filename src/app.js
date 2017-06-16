@@ -20,12 +20,17 @@ const tabs = [{
 Navigation.startTabBasedApp({
     tabs,
     appStyle: {
+        statusBarColor: '#abc9bd',
+
         tabBarButtonColor: '#9aa099',
         tabBarSelectedButtonColor: '#2e291e',
         tabBarBackgroundColor: '#abc9bd',
 
-        navBarBackgroundColor: '#abc9bd',
         navBarTextColor: '#2e291e',
-        navBarButtonColor: '#2e291e'
+        navBarButtonColor: '#2e291e',
+        navBarBackgroundColor: '#abc9bd',
+        navBarHideOnScroll: true,
+
+        screenBackgroundColor: '#fff',
     }
 });
