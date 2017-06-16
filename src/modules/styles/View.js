@@ -21,19 +21,6 @@ const styles = StyleSheet.create({
     item: {
         marginHorizontal: 15,
     },
-    header: {
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        backgroundColor: '#808c9e',
-        borderTopWidth: 1,
-        borderTopColor: 'rgba(0, 0, 0, 0.08)',
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0, 0, 0, 0.08)',
-    },
-    headerText: {
-        color: '#F0F0F0',
-        fontSize: 18,
-    },
     separatorBox: {
         flex: 1,
         flexDirection: 'row',
@@ -44,13 +31,20 @@ const styles = StyleSheet.create({
         height: 15,
         backgroundColor: '#693028'
     },
+    header: {
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        backgroundColor: '#808c9e',
+    },
+    headerText: {
+        color: '#F0F0F0',
+        fontSize: 18,
+    },
     detail: {
         flex: 1,
         flexDirection: 'row',
         paddingTop: 5,
         backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.08)',
     },
     halfList: {
         flex: 1

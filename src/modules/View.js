@@ -15,6 +15,7 @@ const renderSectionHeader = ({section}) => (
         <Text style={styles.sectionText}>{section.key} 楼</Text>
     </View>
 );
+
 class SectionSeparator extends Component {
     constructor(props) {
         super(props);

@@ -32,23 +32,10 @@ class Row extends Component {
 
     render() {
         return (
-            <Text style={[styles.row, {textAlign: this.props.align || 'left'}]}>{this.props.text}</Text>
+            <Text style={[this.props.total ? styles.totalRow : styles.row, {textAlign: this.props.align || 'left'}]}>{this.props.text}</Text>
         );
     }
 }
-
-class TotalRow extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <Text style={[styles.totalRow, {textAlign: this.props.align || 'left'}]}>{this.props.text}</Text>
-        );
-    }
-}
-
 
 class RentalDetail extends Component {
     constructor(props) {
@@ -75,7 +62,7 @@ class RentalDetail extends Component {
                     <Row text={lang.house} align='right'/>
                     <Row text={lang.manage} align='right'/>
                     <Row text={lang.net} align='right'/>
-                    <TotalRow text={lang.total} align='right'/>
+                    <Row text={lang.total} align='right' total={true}/>
                 </View>
                 <View style={{flex: 1}}>
                     <Row text={this.props.rental.waterL}/>
@@ -89,7 +76,7 @@ class RentalDetail extends Component {
                     <Row text={this.props.rental.house}/>
                     <Row text={this.props.rental.manage}/>
                     <Row text={this.props.rental.net}/>
-                    <TotalRow text={total} align='left'/>
+                    <Row text={total} align='left' total={true}/>
                 </View>
             </View>
         );
