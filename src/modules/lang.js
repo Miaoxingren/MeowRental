@@ -26,7 +26,10 @@ const chinese = {
         electric: '电费（元/度）：',
         net: '网费（元/月）：',
         manage: '卫生/管理费（元/月）：',
-    }
+    },
+    flat: '房号',
+    lastMonth: '上月',
+    thisMonth: '本月',
 };
 
 export default chinese;
