@@ -15,9 +15,13 @@ class EditItem extends Component {
         super(props);
     }
 
+    onPress() {
+        this.props.navTo(this.props.navKey);
+    }
+
     render() {
         return (
-            <TouchableOpacity onPress={this.props.onPress} activeOpacity={0.9}>
+            <TouchableOpacity onPress={this.onPress.bind(this)} activeOpacity={0.9}>
                 <View style={styles.editItem}><Text style={styles.editText}>{this.props.text}</Text></View>
             </TouchableOpacity>
         );
@@ -25,26 +29,38 @@ class EditItem extends Component {
 }
 
 export default class EditScren extends Component {
+    static navs = {
+        'single': {screen: 'meowrental.EditSingle', title: lang.editSingle},
+        'rental': {screen: 'meowrental.EditByRental', title: lang.editByRental},
+        'water': {screen: 'meowrental.EditByWater', title: lang.editByWater},
+        'electric': {screen: 'meowrental.EditByElectric', title: lang.editByElectric},
+        'net': {screen: 'meowrental.EditByNet', title: lang.editByNet},
+    };
 
     constructor(props) {
         super(props);
     }
 
-    onPress() {
+    navTo(navKey) {
+        let nav = EditScren.navs[navKey];
         this.props.navigator.push({
-            screen: 'meowrental.Push',
-            title: 'New Screen',
+            screen: nav.screen,
+            title: nav.title,
+            passProps: {},
+            navigatorStyle: {
+                tabBarHidden: true
+            }
         });
     }
 
     render() {
         return (
             <View style={styles.editBox}>
-                <EditItem onPress={this.onPress.bind(this)} text={lang.editSingle} />
-                <EditItem onPress={this.onPress.bind(this)} text={lang.editByRental} />
-                <EditItem onPress={this.onPress.bind(this)} text={lang.editByWater} />
-                <EditItem onPress={this.onPress.bind(this)} text={lang.editByElectric} />
-                <EditItem onPress={this.onPress.bind(this)} text={lang.editByNet} />
+                <EditItem navTo={this.navTo.bind(this)} navKey='single' text={lang.editSingle} />
+                <EditItem navTo={this.navTo.bind(this)} navKey='rental' text={lang.editByRental} />
+                <EditItem navTo={this.navTo.bind(this)} navKey='water' text={lang.editByWater} />
+                <EditItem navTo={this.navTo.bind(this)} navKey='electric' text={lang.editByElectric} />
+                <EditItem navTo={this.navTo.bind(this)} navKey='net' text={lang.editByNet} />
             </View>
         );
     }

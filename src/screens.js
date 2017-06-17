@@ -7,5 +7,5 @@ import Edit from './modules/Edit';
 export function registerScreens() {
     Navigation.registerComponent('meowrental.View', () => View);
     Navigation.registerComponent('meowrental.Edit', () => Edit);
-    Navigation.registerComponent('meowrental.Push', () => View);
+    Navigation.registerComponent('meowrental.EditSingle', () => View);
 }
