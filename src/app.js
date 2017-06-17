@@ -1,19 +1,20 @@
 
 import { Navigation } from 'react-native-navigation';
 import { registerScreens } from './screens';
+import lang from './modules/lang';
 
 registerScreens(); // this is where you register all of your app's screens
 
 const tabs = [{
-    label: '查看',
+    label: lang.view,
     screen: 'meowrental.View',
     icon: require('./img/view.png'),
-    title: '查看房租',
+    title: lang.viewRental,
 }, {
-    label: '编辑',
+    label: lang.edit,
     screen: 'meowrental.Edit',
     icon: require('./img/edit.png'),
-    title: '编辑房租',
+    title: lang.editRental
 }];
 
 // this will start our app

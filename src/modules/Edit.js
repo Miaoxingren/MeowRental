@@ -1,44 +1,52 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  Button
+    Text,
+    View,
+    StyleSheet,
+    Button,
+    TouchableOpacity,
+    Alert
 } from 'react-native';
+import styles from './styles/Edit';
+import lang from './lang';
 
-export default class CustomNavBarScren extends Component {
-  static navigatorStyle = {
-    drawUnderTabBar: true,
-    navBarCustomView: 'example.CustomNavBar',
-    navBarCustomViewInitialProps: {name: 'Hi Custom'}
-  };
+class EditItem extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-      </View>
-    );
-  }
-
+    render() {
+        return (
+            <TouchableOpacity onPress={this.props.onPress} activeOpacity={0.9}>
+                <View style={styles.editItem}><Text style={styles.editText}>{this.props.text}</Text></View>
+            </TouchableOpacity>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#f3f6fb'
-  },
-  button: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginBottom: 10,
-    marginTop:10,
-    color: 'blue'
-  }
-});
+export default class EditScren extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    onPress() {
+        this.props.navigator.push({
+            screen: 'meowrental.Push',
+            title: 'New Screen',
+        });
+    }
+
+    render() {
+        return (
+            <View style={styles.editBox}>
+                <EditItem onPress={this.onPress.bind(this)} text={lang.editSingle} />
+                <EditItem onPress={this.onPress.bind(this)} text={lang.editByRental} />
+                <EditItem onPress={this.onPress.bind(this)} text={lang.editByWater} />
+                <EditItem onPress={this.onPress.bind(this)} text={lang.editByElectric} />
+                <EditItem onPress={this.onPress.bind(this)} text={lang.editByNet} />
+            </View>
+        );
+    }
+
+}

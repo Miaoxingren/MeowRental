@@ -16,6 +16,11 @@ const chinese = {
     house: '租金：',
     manage: '卫生/管理费：',
     total: '总计：',
+    editSingle: '编辑单价',
+    editByRental: '编辑租金',
+    editByWater: '编辑水费',
+    editByElectric: '编辑电费',
+    editByNet: '编辑网费',
 };
 
 export default chinese;
