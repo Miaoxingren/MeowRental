@@ -20,7 +20,13 @@ class Row extends Component {
         return (
             <View style={styles.row}>
                 <View style={styles.unit}><Text style={styles.unitText}>{this.props.title}</Text></View>
-                <View style={styles.value}><TextInput style={styles.valueText} underlineColorAndroid='transparent' keyboardType='numeric' onChangeText={(text) => this.setState({text})} value={this.state.text}/></View>
+                <View style={styles.value}>
+                    <TextInput style={styles.valueText}
+                        underlineColorAndroid='transparent'
+                        keyboardType='numeric'
+                        onChangeText={(text) => this.setState({text})}
+                        value={this.state.text}/>
+                </View>
             </View>
         );
     }
