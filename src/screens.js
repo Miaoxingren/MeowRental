@@ -4,6 +4,7 @@ import View from './modules/screens/View';
 import Edit from './modules/screens/Edit';
 import EditSingle from './modules/screens/EditSingle';
 import EditByRental from './modules/screens/EditByRental';
+import EditByNet from './modules/screens/EditByNet';
 
 // register all screens of the app (including internal ones)
 export function registerScreens() {
@@ -11,4 +12,5 @@ export function registerScreens() {
     Navigation.registerComponent('meowrental.Edit', () => Edit);
     Navigation.registerComponent('meowrental.EditSingle', () => EditSingle);
     Navigation.registerComponent('meowrental.EditByRental', () => EditByRental);
+    Navigation.registerComponent('meowrental.EditByNet', () => EditByNet);
 }
