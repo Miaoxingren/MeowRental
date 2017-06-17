@@ -21,6 +21,12 @@ const chinese = {
     editByWater: '编辑水费',
     editByElectric: '编辑电费',
     editByNet: '编辑网费',
+    unit: {
+        water: '水费（元/吨）：',
+        electric: '电费（元/度）：',
+        net: '网费（元/月）：',
+        manage: '卫生/管理费（元/月）：',
+    }
 };
 
 export default chinese;

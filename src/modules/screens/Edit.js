@@ -7,8 +7,8 @@ import {
     TouchableOpacity,
     Alert
 } from 'react-native';
-import styles from './styles/Edit';
-import lang from './lang';
+import styles from '../styles/Edit';
+import lang from '../lang';
 
 class EditItem extends Component {
     constructor(props) {
@@ -48,7 +48,8 @@ export default class EditScren extends Component {
             title: nav.title,
             passProps: {},
             navigatorStyle: {
-                tabBarHidden: true
+                tabBarHidden: true,
+                navBarHidden: false,
             }
         });
     }

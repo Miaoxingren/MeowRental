@@ -65,4 +65,13 @@ const data = [{data: [{title: '101', key: '101', empty: false, rental: {waterL: 
 
 const test = [data[0], data[1]];
 
+const single = {
+    water: '8',
+    electric: '1.3',
+    net: '50',
+    manage: '20',
+};
+
+export {single};
+
 export default test;

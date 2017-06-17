@@ -6,9 +6,9 @@ import {
     Button,
     SectionList
 } from 'react-native';
-import ViewItem from './components/ViewItem';
-import styles from './styles/View';
-import data from './data';
+import ViewItem from '../components/ViewItem';
+import styles from '../styles/View';
+import data from '../data';
 
 const renderSectionHeader = ({section}) => (
     <View style={styles.section}>
@@ -43,6 +43,7 @@ class ItemSeparator extends Component {
         );
     }
 }
+
 export default class ViewScreen extends Component {
 
     constructor(props) {
@@ -51,7 +52,7 @@ export default class ViewScreen extends Component {
 
     render() {
         return (
-            <View style={styles.sviewBox}>
+            <View style={styles.viewBox}>
                 <SectionList
                     stickySectionHeadersEnabled={true}
                     renderSectionHeader={renderSectionHeader}
