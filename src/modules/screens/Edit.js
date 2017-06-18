@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {
     Text,
     View,
-    StyleSheet,
-    Button,
-    TouchableOpacity,
-    Alert
+    TouchableOpacity
 } from 'react-native';
+
 import styles from '../styles/Edit';
+import common from '../styles/Common';
+
 import lang from '../lang';
 
 class EditItem extends Component {
@@ -22,7 +22,7 @@ class EditItem extends Component {
     render() {
         return (
             <TouchableOpacity onPress={this.onPress.bind(this)} activeOpacity={0.9}>
-                <View style={styles.editItem}><Text style={styles.editText}>{this.props.text}</Text></View>
+                <View style={[common.info, styles.editItem]}><Text style={common.infoText}>{this.props.text}</Text></View>
             </TouchableOpacity>
         );
     }
@@ -43,6 +43,7 @@ export default class EditScren extends Component {
 
     navTo(navKey) {
         let nav = EditScren.navs[navKey];
+        if (!nav) return;
         this.props.navigator.push({
             screen: nav.screen,
             title: nav.title,
@@ -56,7 +57,7 @@ export default class EditScren extends Component {
 
     render() {
         return (
-            <View style={styles.editBox}>
+            <View style={common.container}>
                 <EditItem navTo={this.navTo.bind(this)} navKey='single' text={lang.editSingle} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='rental' text={lang.editByRental} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='water' text={lang.editByWater} />

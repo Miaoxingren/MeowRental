@@ -3,8 +3,10 @@ import {
     Text,
     View
 } from 'react-native';
+
 import styles from '../styles/View';
 import common from '../styles/Common';
+
 import lang from '../lang';
 
 const ViewItemHeader = ({title}) => (

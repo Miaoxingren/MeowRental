@@ -11,6 +11,10 @@ const styles = StyleSheet.create({
         height: 15,
         backgroundColor: '#693028'
     },
+    container: {
+        backgroundColor: '#eee',
+        padding: 10,
+    },
     info: {
         paddingHorizontal: 15,
         paddingVertical: 5,
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
         color: '#F0F0F0',
         fontSize: 20,
     },
-    text: {
+    normal: {
         fontSize: 20
     },
     large: {
