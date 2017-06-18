@@ -16,30 +16,31 @@ export default class RentalItem extends Component {
         super(props);
         this.state = {
             num: this.props.rental,
-            rented:true,
+            rented: true,
         };
     }
 
-    togglesRented(rented) {
-        this.setState({rented})
+    toggleRented(rented) {
+        this.setState({rented});
     }
 
     render() {
         return (
             <View style={common.flexByRow}>
                 <View style={common.flexChild}>
-                    <Text style={styles.text}>{this.props.title}</Text>
+                    <Text style={common.rowText}>{this.props.title}</Text>
                 </View>
                 <View style={common.flexChild}>
                     <Switch
                         style={common.switch}
-                        onValueChange={this.togglesRented.bind(this)}
+                        onValueChange={this.toggleRented.bind(this)}
                         value={this.state.rented}/>
                 </View>
                 <View style={styles.rental}>
                     <NumInput passNum={(num) => this.setState({num})}
                         default={this.state.num}
-                        style={styles.text}/>
+                        style={common.rowText}
+                        editable={this.state.rented}/>
                 </View>
             </View>
         );

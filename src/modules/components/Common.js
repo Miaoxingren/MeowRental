@@ -28,13 +28,15 @@ class NumInput extends Component {
     }
 
     render() {
+        let textStyle = this.props.editable ? {} : {color: '#eee'};
         return (
-            <TextInput style={[styles.numInput, this.props.style]}
+            <TextInput style={[styles.numInput, this.props.style, textStyle]}
                 maxLength={6}
                 underlineColorAndroid='transparent'
                 keyboardType='numeric'
                 onChangeText={this.onChangeNum.bind(this)}
-                value={this.state.num}/>
+                value={this.state.num}
+                editable={this.props.editable}/>
         );
     }
 }

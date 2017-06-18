@@ -1,43 +1,33 @@
 import React, {Component} from 'react';
-import {View, FlatList, Text, TextInput} from 'react-native';
-import {net} from '../data';
+import {
+    View,
+    FlatList,
+    Text,
+    TextInput
+} from 'react-native';
+import NetItem from '../components/NetItem';
+
 import styles from '../styles/EditByNet'
 
-class NetItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { text: this.props.net };
-    }
+import {net} from '../data';
 
-    render() {
-        return (
-            <View style={styles.netItem}>
-                <View style={styles.flat}><Text style={styles.text}>{this.props.title}</Text></View>
-                <View style={styles.net}>
-                    <TextInput style={styles.text}
-                        underlineColorAndroid='transparent'
-                        keyboardType='numeric'
-                        onChangeText={(text) => this.setState({text})}
-                        value={this.state.text}/>
-                </View>
-            </View>
-        );
-    }
-}
+const keyExtractor = (item, index) => item.key;
+
+const renderItem = ({item}) => (
+    <NetItem title={item.title} key={item.key} net={item.net}/>
+);
 
 export default class EditByNet extends Component {
     constructor(props) {
         super(props);
     }
-    _keyExtractor = (item, index) => item.key;
-    _renderItem = ({item}) => (<NetItem title={item.title} key={item.key} net={item.net}/>);
 
     render() {
         return (
-            <View style={styles.container}>
+            <View>
                 <FlatList data={net}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={this._renderItem}/>
+                    keyExtractor={keyExtractor}
+                    renderItem={renderItem}/>
             </View>
         )
     }

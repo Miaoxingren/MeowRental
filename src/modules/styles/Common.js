@@ -48,7 +48,11 @@ const styles = StyleSheet.create({
     },
     switch: {
         backgroundColor: 'transparent',
-        marginRight: '25%',
+    },
+    rowText: {
+        fontSize: 18,
+        textAlign: 'center',
+        padding: 0,
     },
     normal: {
         fontSize: 20
