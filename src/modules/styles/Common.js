@@ -24,9 +24,31 @@ const styles = StyleSheet.create({
         color: '#F0F0F0',
         fontSize: 18,
     },
-    numText: {
+    numInput: {
         fontSize: 18,
-        color: '#252A1E'
+        color: '#252A1E',
+        margin: 0,
+    },
+    flexByRow: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 5,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(0, 0, 0, 0.15)',
+        backgroundColor: '#fff',
+    },
+    flexChild: {
+        flex: 1,
+        borderRightWidth: 1,
+        borderRightColor: 'rgba(0, 0, 0, 0.15)',
+    },
+    flexChildL: {
+        flex: 1,
+    },
+    switch: {
+        backgroundColor: 'transparent',
+        marginRight: '25%',
     },
     normal: {
         fontSize: 20

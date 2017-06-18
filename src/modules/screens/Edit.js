@@ -1,32 +1,14 @@
 import React, {Component} from 'react';
 import {
     Text,
-    View,
-    TouchableOpacity
+    View
 } from 'react-native';
+import EditItem from '../components/EditItem';
 
 import styles from '../styles/Edit';
 import common from '../styles/Common';
 
 import lang from '../lang';
-
-class EditItem extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    onPress() {
-        this.props.navTo(this.props.navKey);
-    }
-
-    render() {
-        return (
-            <TouchableOpacity onPress={this.onPress.bind(this)} activeOpacity={0.9}>
-                <View style={[common.info, styles.editItem]}><Text style={common.infoText}>{this.props.text}</Text></View>
-            </TouchableOpacity>
-        );
-    }
-}
 
 export default class EditScren extends Component {
     static navs = {

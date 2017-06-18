@@ -29,7 +29,7 @@ class NumInput extends Component {
 
     render() {
         return (
-            <TextInput style={styles.numText}
+            <TextInput style={[styles.numInput, this.props.style]}
                 maxLength={6}
                 underlineColorAndroid='transparent'
                 keyboardType='numeric'

@@ -16,7 +16,7 @@ import lang from '../lang';
 class Row extends Component {
     constructor(props) {
         super(props);
-        this.state = { text: this.props.default };
+        this.state = { num: this.props.default };
     }
 
     render() {
@@ -25,7 +25,7 @@ class Row extends Component {
                 <View style={common.info}><Text style={common.infoText}>{this.props.title}</Text></View>
                 <View style={styles.value}>
                     <NumInput
-                        passNum={(text) => this.setState({text})}
+                        passNum={(num) => this.setState({num})}
                         default={this.state.text}/>
                 </View>
             </View>
