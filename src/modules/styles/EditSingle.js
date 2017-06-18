@@ -6,10 +6,6 @@ const styles = {
     value: {
         backgroundColor: '#fff',
     },
-    valueText: {
-        fontSize: 18,
-        color: '#252A1E'
-    }
 };
 
 export default styles;

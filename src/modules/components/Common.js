@@ -30,6 +30,7 @@ class NumInput extends Component {
     render() {
         return (
             <TextInput style={styles.numText}
+                maxLength={6}
                 underlineColorAndroid='transparent'
                 keyboardType='numeric'
                 onChangeText={this.onChangeNum.bind(this)}
