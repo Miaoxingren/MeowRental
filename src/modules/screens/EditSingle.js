@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import {
     Text,
     View,
-    StyleSheet,
-    Button,
     TextInput
 } from 'react-native';
+import {ItemSeparator, NumInput} from '../components/Common';
+
 import styles from '../styles/EditSingle';
+import common from '../styles/Common';
+
 import {single} from '../data';
+
 import lang from '../lang';
 
 class Row extends Component {
@@ -19,13 +22,11 @@ class Row extends Component {
     render() {
         return (
             <View style={styles.row}>
-                <View style={styles.unit}><Text style={styles.unitText}>{this.props.title}</Text></View>
+                <View style={common.info}><Text style={common.infoText}>{this.props.title}</Text></View>
                 <View style={styles.value}>
-                    <TextInput style={styles.valueText}
-                        underlineColorAndroid='transparent'
-                        keyboardType='numeric'
-                        onChangeText={(text) => this.setState({text})}
-                        value={this.state.text}/>
+                    <NumInput
+                        passNum={(text) => this.setState({text})}
+                        default={this.state.text}/>
                 </View>
             </View>
         );
@@ -40,10 +41,13 @@ export default class EditSingleScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={common.container}>
                 <Row title={lang.unit.water} default={single.water}/>
+                <ItemSeparator />
                 <Row title={lang.unit.electric} default={single.electric}/>
+                <ItemSeparator />
                 <Row title={lang.unit.net} default={single.net}/>
+                <ItemSeparator />
                 <Row title={lang.unit.manage} default={single.manage}/>
             </View>
         );

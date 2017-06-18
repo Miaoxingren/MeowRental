@@ -22,7 +22,11 @@ const styles = StyleSheet.create({
     },
     infoText: {
         color: '#F0F0F0',
-        fontSize: 20,
+        fontSize: 18,
+    },
+    numText: {
+        fontSize: 18,
+        color: '#252A1E'
     },
     normal: {
         fontSize: 20
