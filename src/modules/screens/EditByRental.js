@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {View, FlatList, Text, TextInput} from 'react-native';
+import {View, FlatList, Text, TextInput, Switch} from 'react-native';
 import {rental} from '../data';
 import styles from '../styles/EditByRental'
 
 class RentalItem extends Component {
     constructor(props) {
         super(props);
-        this.state = { text: this.props.rental };
+        this.state = { text: this.props.rental,rented:true };
     }
 
     render() {
@@ -20,6 +20,7 @@ class RentalItem extends Component {
                         onChangeText={(text) => this.setState({text})}
                         value={this.state.text}/>
                 </View>
+                <View style={styles.flat}><Switch style={{backgroundColor: 'transparent'}} onValueChange={(rented) => this.setState({rented})} value={this.state.rented}/></View>
             </View>
         );
     }
