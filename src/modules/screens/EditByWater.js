@@ -4,6 +4,10 @@ import {water} from '../data';
 import styles from '../styles/EditByWater'
 import lang from '../lang';
 
+const calculateWater = ({lastMonth, thisMonth}) => (
+    Math.round((thisMonth - lastMonth) * 1.3)
+);
+
 class WaterItem extends Component {
     constructor(props) {
         super(props);
