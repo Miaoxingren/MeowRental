@@ -28,7 +28,7 @@ class NumInput extends Component {
     }
 
     render() {
-        let textStyle = this.props.editable ? {} : {color: '#eee'};
+        let textStyle = this.props.editable === false ? {color: '#eee'} : {};
         return (
             <TextInput style={[styles.numInput, this.props.style, textStyle]}
                 maxLength={6}
