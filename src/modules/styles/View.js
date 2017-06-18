@@ -1,12 +1,12 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-    viewBox: {
+    container: {
         backgroundColor: '#eee'
     },
     section: {
         paddingHorizontal: 15,
-        paddingVertical: 10,
+        paddingVertical: 5,
         backgroundColor: '#79B0BA',
         borderTopWidth: 1,
         borderTopColor: 'rgba(0, 0, 0, 0.08)',
@@ -19,34 +19,15 @@ const styles = StyleSheet.create({
         height: 10,
     },
     item: {
-        marginHorizontal: 15,
+        marginHorizontal: 20,
     },
-    separatorBox: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
-    separator: {
-        width: 5,
-        height: 15,
-        backgroundColor: '#693028'
-    },
-    header: {
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        backgroundColor: '#808c9e',
-    },
-    headerText: {
-        color: '#F0F0F0',
-        fontSize: 18,
-    },
-    detail: {
+    detailBox: {
         flex: 1,
         flexDirection: 'row',
         paddingTop: 5,
         backgroundColor: '#fff',
     },
-    halfList: {
+    detailList: {
         flex: 1
     },
     row: {
@@ -55,12 +36,9 @@ const styles = StyleSheet.create({
     },
     totalRow: {
         paddingVertical: 5,
-        fontSize: 18,
+        fontSize: 20,
         backgroundColor: '#808c9e',
         color: '#F0F0F0',
-    },
-    text: {
-        fontSize: 16,
     }
 });
 

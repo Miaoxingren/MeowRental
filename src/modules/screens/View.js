@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import {
     Text,
     View,
-    Button,
     SectionList
 } from 'react-native';
+
 import ViewItem from '../components/ViewItem';
+import {ItemSeparator} from '../components/Common';
+
 import styles from '../styles/View';
+
 import data from '../data';
 
 const renderSectionHeader = ({section}) => (
@@ -15,49 +18,28 @@ const renderSectionHeader = ({section}) => (
     </View>
 );
 
-class SectionSeparator extends Component {
-    constructor(props) {
-        super(props);
-    }
+const renderItem = ({item}) => (
+    <ViewItem title={item.title} rented={item.rented} rental={item.rental}/>
+);
 
-    render() {
-        return (
-            <View style={styles.sectionSeparator}>
-            </View>
-        );
-    }
-}
-
-class ItemSeparator extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <View style={styles.separatorBox}>
-                <View style={styles.separator}></View>
-                <View style={styles.separator}></View>
-            </View>
-        );
-    }
-}
+const SectionSeparator = () => (
+    <View style={styles.sectionSeparator}></View>
+);
 
 export default class ViewScreen extends Component {
-
     constructor(props) {
         super(props);
     }
 
     render() {
         return (
-            <View style={styles.viewBox}>
+            <View style={styles.container}>
                 <SectionList
-                    stickySectionHeadersEnabled={true}
                     renderSectionHeader={renderSectionHeader}
                     SectionSeparatorComponent={SectionSeparator}
+                    stickySectionHeadersEnabled={true}
+                    renderItem={renderItem}
                     ItemSeparatorComponent={ItemSeparator}
-                    renderItem={({item}) => <ViewItem title={item.title} empty={item.empty} rental={item.rental}/>}
                     sections={data}/>
             </View>
         );

@@ -1,102 +1,67 @@
 import React, {Component} from 'react';
 import {
     Text,
-    View,
-    ScrollView,
-    TouchableOpacity,
-    StyleSheet,
-    Button,
-    SectionList
+    View
 } from 'react-native';
 import styles from '../styles/View';
+import common from '../styles/Common';
 import lang from '../lang';
 
-class ViewItemHeader extends Component {
-    constructor(props) {
-        super(props);
-    }
+const ViewItemHeader = ({title}) => (
+    <View style={common.info}>
+        <Text style={common.infoText}>{title}</Text>
+    </View>
+);
 
-    render() {
-        return (
-            <View style={styles.header}>
-                <Text style={styles.headerText}>{this.props.title}</Text>
+const Row = ({total, align = 'left', text}) => (
+    <Text style={[total ? styles.totalRow : styles.row, {textAlign: align}]}>{text}</Text>
+);
+
+const RentalDetail = ({rental}) => {
+    let total = rental.water +
+        rental.electric +
+        rental.house +
+        rental.manage +
+        rental.net;
+    return (
+        <View style={styles.detailBox}>
+            <View style={styles.detailList}>
+                <Row text={lang.waterL} align='right'/>
+                <Row text={lang.waterT} align='right'/>
+                <Row text={lang.waterUse} align='right'/>
+                <Row text={lang.electricL} align='right'/>
+                <Row text={lang.electricT} align='right'/>
+                <Row text={lang.electricUse} align='right'/>
+                <Row text={lang.water} align='right'/>
+                <Row text={lang.electric} align='right'/>
+                <Row text={lang.house} align='right'/>
+                <Row text={lang.manage} align='right'/>
+                <Row text={lang.net} align='right'/>
+                <Row text={lang.total} align='right' total={true}/>
             </View>
-        );
-    }
-}
-
-class Row extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <Text style={[this.props.total ? styles.totalRow : styles.row, {textAlign: this.props.align || 'left'}]}>{this.props.text}</Text>
-        );
-    }
-}
-
-class RentalDetail extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        let total = this.props.rental.water +
-            this.props.rental.electric +
-            this.props.rental.house +
-            this.props.rental.manage +
-            this.props.rental.net;
-        return (
-            <View style={styles.detail}>
-                <View style={{flex: 1}}>
-                    <Row text={lang.waterL} align='right'/>
-                    <Row text={lang.waterT} align='right'/>
-                    <Row text={lang.waterUse} align='right'/>
-                    <Row text={lang.electricL} align='right'/>
-                    <Row text={lang.electricT} align='right'/>
-                    <Row text={lang.electricUse} align='right'/>
-                    <Row text={lang.water} align='right'/>
-                    <Row text={lang.electric} align='right'/>
-                    <Row text={lang.house} align='right'/>
-                    <Row text={lang.manage} align='right'/>
-                    <Row text={lang.net} align='right'/>
-                    <Row text={lang.total} align='right' total={true}/>
-                </View>
-                <View style={{flex: 1}}>
-                    <Row text={this.props.rental.waterL}/>
-                    <Row text={this.props.rental.waterT}/>
-                    <Row text={this.props.rental.waterUse}/>
-                    <Row text={this.props.rental.electricL}/>
-                    <Row text={this.props.rental.electricT}/>
-                    <Row text={this.props.rental.electricUse}/>
-                    <Row text={this.props.rental.water}/>
-                    <Row text={this.props.rental.electric}/>
-                    <Row text={this.props.rental.house}/>
-                    <Row text={this.props.rental.manage}/>
-                    <Row text={this.props.rental.net}/>
-                    <Row text={total} align='left' total={true}/>
-                </View>
+            <View style={styles.detailList}>
+                <Row text={rental.waterL}/>
+                <Row text={rental.waterT}/>
+                <Row text={rental.waterUse}/>
+                <Row text={rental.electricL}/>
+                <Row text={rental.electricT}/>
+                <Row text={rental.electricUse}/>
+                <Row text={rental.water}/>
+                <Row text={rental.electric}/>
+                <Row text={rental.house}/>
+                <Row text={rental.manage}/>
+                <Row text={rental.net}/>
+                <Row text={total} total={true}/>
             </View>
-        );
-    }
-}
+        </View>
+    );
+};
 
-class ViewItemDetail extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-
-        return (
-            this.props.empty ? (<View>
-                <Text>未租出</Text>
-            </View>) : (<RentalDetail rental={this.props.rental} />)
-        );
-    }
-}
+const ViewItemDetail = ({rented, rental}) => (
+    rented ? (<RentalDetail rental={rental} />) : (<View>
+        <Text>未租出</Text>
+    </View>)
+);
 
 export default class ViewItem extends Component {
     constructor(props) {
@@ -107,7 +72,7 @@ export default class ViewItem extends Component {
         return (
             <View style={styles.item}>
                 <ViewItemHeader title={this.props.title} />
-                <ViewItemDetail empty={this.props.empty} rental={this.props.rental} />
+                <ViewItemDetail rented={this.props.rented} rental={this.props.rental} />
             </View>
         )
     }
