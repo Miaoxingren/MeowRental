@@ -1,9 +1,14 @@
+import { Provider } from 'react-redux';
 
 import { Navigation } from 'react-native-navigation';
+
 import { registerScreens } from './screens';
+import configureStore from './store/configureStore';
 import lang from './modules/lang';
 
-registerScreens(); // this is where you register all of your app's screens
+const store = configureStore();
+
+registerScreens(store, Provider); // this is where you register all of your app's screens
 
 const tabs = [{
     label: lang.view,

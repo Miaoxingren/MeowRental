@@ -6,13 +6,13 @@ import {
 } from 'react-native';
 import {NumInput} from '../components/Common';
 
-import styles from '../styles/EditByElectric';
+import styles from '../styles/EditByPower';
 import common from '../styles/Common';
 
-export default class ElectricItem extends Component {
+export default class PowerItem extends Component {
     constructor(props) {
         super(props);
-        this.state = { textL: this.props.electricL, textT: this.props.electricT };
+        this.state = { textL: this.props.powerL, textT: this.props.powerT };
     }
 
     render() {
@@ -21,12 +21,12 @@ export default class ElectricItem extends Component {
                 <View style={common.flexChild}>
                     <Text style={common.rowText}>{this.props.title}</Text>
                 </View>
-                <View style={[styles.electric, styles.electricL]}>
+                <View style={[styles.power, styles.powerL]}>
                     <NumInput passNum={(num) => this.setState({textL: num})}
                         default={this.state.textL}
                         style={common.rowText}/>
                 </View>
-                <View style={styles.electric}>
+                <View style={styles.power}>
                     <NumInput passNum={(num) => this.setState({textT: num})}
                         default={this.state.textT}
                         style={common.rowText}/>

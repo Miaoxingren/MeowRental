@@ -5,10 +5,10 @@ const styles = {
     headerText: {
         color: '#F0F0F0',
     },
-    electric: {
+    power: {
         flex: 2,
     },
-    electricL: {
+    powerL: {
         borderRightWidth: 1,
         borderRightColor: 'rgba(0, 0, 0, 0.15)',
     },

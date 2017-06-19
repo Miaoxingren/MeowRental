@@ -15,7 +15,7 @@ export default class EditScren extends Component {
         'single': {screen: 'meowrental.EditSingle', title: lang.editSingle},
         'rental': {screen: 'meowrental.EditByRental', title: lang.editByRental},
         'water': {screen: 'meowrental.EditByWater', title: lang.editByWater},
-        'electric': {screen: 'meowrental.EditByElectric', title: lang.editByElectric},
+        'power': {screen: 'meowrental.EditByPower', title: lang.editByPower},
         'net': {screen: 'meowrental.EditByNet', title: lang.editByNet},
     };
 
@@ -43,7 +43,7 @@ export default class EditScren extends Component {
                 <EditItem navTo={this.navTo.bind(this)} navKey='single' text={lang.editSingle} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='rental' text={lang.editByRental} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='water' text={lang.editByWater} />
-                <EditItem navTo={this.navTo.bind(this)} navKey='electric' text={lang.editByElectric} />
+                <EditItem navTo={this.navTo.bind(this)} navKey='power' text={lang.editByPower} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='net' text={lang.editByNet} />
             </View>
         );

@@ -21,7 +21,7 @@ const Row = ({total, align = 'left', text}) => (
 
 const RentalDetail = ({rental}) => {
     let total = rental.water +
-        rental.electric +
+        rental.power +
         rental.house +
         rental.manage +
         rental.net;
@@ -31,11 +31,11 @@ const RentalDetail = ({rental}) => {
                 <Row text={lang.waterL} align='right'/>
                 <Row text={lang.waterT} align='right'/>
                 <Row text={lang.waterUse} align='right'/>
-                <Row text={lang.electricL} align='right'/>
-                <Row text={lang.electricT} align='right'/>
-                <Row text={lang.electricUse} align='right'/>
+                <Row text={lang.powerL} align='right'/>
+                <Row text={lang.powerT} align='right'/>
+                <Row text={lang.powerUse} align='right'/>
                 <Row text={lang.water} align='right'/>
-                <Row text={lang.electric} align='right'/>
+                <Row text={lang.power} align='right'/>
                 <Row text={lang.house} align='right'/>
                 <Row text={lang.manage} align='right'/>
                 <Row text={lang.net} align='right'/>
@@ -45,11 +45,11 @@ const RentalDetail = ({rental}) => {
                 <Row text={rental.waterL}/>
                 <Row text={rental.waterT}/>
                 <Row text={rental.waterUse}/>
-                <Row text={rental.electricL}/>
-                <Row text={rental.electricT}/>
-                <Row text={rental.electricUse}/>
+                <Row text={rental.powerL}/>
+                <Row text={rental.powerT}/>
+                <Row text={rental.powerUse}/>
                 <Row text={rental.water}/>
-                <Row text={rental.electric}/>
+                <Row text={rental.power}/>
                 <Row text={rental.house}/>
                 <Row text={rental.manage}/>
                 <Row text={rental.net}/>

@@ -44,7 +44,7 @@ export default class EditSingleScreen extends Component {
             <View style={common.container}>
                 <Row title={lang.unit.water} default={single.water}/>
                 <ItemSeparator />
-                <Row title={lang.unit.electric} default={single.electric}/>
+                <Row title={lang.unit.power} default={single.power}/>
                 <ItemSeparator />
                 <Row title={lang.unit.net} default={single.net}/>
                 <ItemSeparator />
