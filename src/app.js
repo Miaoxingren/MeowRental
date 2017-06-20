@@ -4,9 +4,10 @@ import { Navigation } from 'react-native-navigation';
 
 import { registerScreens } from './screens';
 import configureStore from './store/configureStore';
+import initialState from './reducers/initialState';
 import lang from './modules/lang';
 
-const store = configureStore();
+const store = configureStore(initialState);
 
 registerScreens(store, Provider); // this is where you register all of your app's screens
 

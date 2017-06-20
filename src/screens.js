@@ -9,12 +9,12 @@ import EditByWater from './modules/screens/EditByWater';
 import EditByPower from './modules/screens/EditByPower';
 
 // register all screens of the app (including internal ones)
-export function registerScreens() {
-    Navigation.registerComponent('meowrental.View', () => View);
-    Navigation.registerComponent('meowrental.Edit', () => Edit);
-    Navigation.registerComponent('meowrental.EditSingle', () => EditSingle);
-    Navigation.registerComponent('meowrental.EditByRental', () => EditByRental);
-    Navigation.registerComponent('meowrental.EditByNet', () => EditByNet);
-    Navigation.registerComponent('meowrental.EditByWater', () => EditByWater);
-    Navigation.registerComponent('meowrental.EditByPower', () => EditByPower);
+export function registerScreens(store, Provider) {
+    Navigation.registerComponent('meowrental.View', () => View, store, Provider);
+    Navigation.registerComponent('meowrental.Edit', () => Edit, store, Provider);
+    Navigation.registerComponent('meowrental.EditSingle', () => EditSingle, store, Provider);
+    Navigation.registerComponent('meowrental.EditByRental', () => EditByRental, store, Provider);
+    Navigation.registerComponent('meowrental.EditByNet', () => EditByNet, store, Provider);
+    Navigation.registerComponent('meowrental.EditByWater', () => EditByWater, store, Provider);
+    Navigation.registerComponent('meowrental.EditByPower', () => EditByPower, store, Provider);
 }
