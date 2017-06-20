@@ -15,8 +15,6 @@ import {ItemSeparator} from '../components/Common';
 
 import styles from '../styles/View';
 
-import data from '../data';
-
 const renderSectionHeader = ({section}) => (
     <View style={styles.section}>
         <Text style={styles.sectionText}>{section.key} 楼</Text>
@@ -80,9 +78,10 @@ const format = (obj) => {
 }
 
 function mapStateToProps(state, ownProps) {
-    let index = findAllByDate(state.view.rental, state.view.date);
+    let viewState = state.view;
+    let index = findAllByDate(viewState.rental, viewState.date);
 	return {
-		rentals: index === undefined ? [] : state.view.rental[index].data,
+		rentals: index === undefined ? [] : viewState.rental[index].data,
 	};
 }
 
