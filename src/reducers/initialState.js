@@ -7,7 +7,7 @@ const initialState = {
     },
     rental : [
         {
-            date: '2017-06',
+            date: '2017-05',
             data: [
                 {
                     data: [
@@ -150,7 +150,12 @@ const initialState = {
                         }
                     ],
                     key: '1'
-                }, {
+                }
+            ]
+        }, {
+            date: '2017-06',
+            data: [
+                {
                     data: [
                         {
                             title: '201',

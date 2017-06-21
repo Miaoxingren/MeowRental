@@ -4,6 +4,15 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#eee'
     },
+    pickerView: {
+        backgroundColor: '#79B0BA',
+        borderTopWidth: 1,
+        borderTopColor: 'rgba(0, 0, 0, 0.08)',
+    },
+    picker: {
+        backgroundColor: '#79B0BA',
+        color: '#252A1E',
+    },
     section: {
         paddingHorizontal: 15,
         paddingVertical: 5,

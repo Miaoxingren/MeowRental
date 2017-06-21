@@ -3,6 +3,7 @@ import {
     Text,
     View,
     SectionList,
+    Picker,
     Alert
 } from 'react-native';
 import { bindActionCreators } from 'redux';
@@ -29,6 +30,29 @@ const SectionSeparator = () => (
     <View style={styles.sectionSeparator}></View>
 );
 
+class History extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {date: props.date};
+    }
+
+    changeDate(date, position) {
+        this.setState({date});
+        this.props.retrieveHistory(date);
+    }
+
+    render() {
+        let {histories} = this.props;
+        return (
+            <View style={styles.pickerView}>
+                <Picker style={styles.picker} mode="dropdown" onValueChange={this.changeDate.bind(this)} selectedValue={this.state.date}>
+                    {histories.map((item) => (<Picker.Item key={item} label={item} value={item} />))}
+                </Picker>
+            </View>
+        )
+    }
+}
+
 class ViewScreen extends Component {
     constructor(props) {
         super(props);
@@ -46,9 +70,14 @@ class ViewScreen extends Component {
 		this.props.actions.retrieveLatest();
 	}
 
+    retrieveHistory(date) {
+        this.props.actions.retrieveByDate(date);
+    }
+
     render() {
         return (
             <View style={styles.container}>
+                <History date={this.props.date} histories={this.props.histories} retrieveHistory={this.retrieveHistory.bind(this)} />
                 <SectionList
                     renderSectionHeader={renderSectionHeader}
                     SectionSeparatorComponent={SectionSeparator}
@@ -69,6 +98,12 @@ const findAllByDate = (rental, date) => {
     }
 };
 
+const extractDate = (rental) => (
+    rental.map((item) => (
+        item.date
+    ))
+);
+
 const format = (obj) => {
     let str = '';
     for (key of Object.keys(obj)) {
@@ -82,6 +117,8 @@ function mapStateToProps(state, ownProps) {
     let index = findAllByDate(viewState.rental, viewState.date);
 	return {
 		rentals: index === undefined ? [] : viewState.rental[index].data,
+        date: viewState.date,
+        histories: extractDate(viewState.rental),
 	};
 }
 
