@@ -3,8 +3,9 @@ import view from './view.reducer';
 import edit from './edit.reducer';
 
 const rootReducer = combineReducers({
-	rental: view,
-    single: edit
+	history: edit,
+    single: edit,
+    preview: edit
 });
 
 export default rootReducer;

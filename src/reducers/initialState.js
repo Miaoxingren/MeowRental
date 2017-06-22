@@ -1,11 +1,11 @@
 const initialState = {
-    single : {
+    single: {
         water: '8',
         power: '1.3',
         net: '50',
         manage: '20'
     },
-    rental : [
+    history: [
         {
             date: '2017-05',
             data: [
@@ -299,7 +299,8 @@ const initialState = {
                 }
             ]
         }
-    ]
+    ],
+    preview: []
 };
 
 export default initialState;

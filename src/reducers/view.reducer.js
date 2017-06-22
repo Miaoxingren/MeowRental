@@ -16,7 +16,6 @@ export default function (state = initialState, action) {
 				date: action.date
 			};
 
-
 		default:
 			return state;
 	}

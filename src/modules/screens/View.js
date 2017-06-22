@@ -5,10 +5,8 @@ import {
     SectionList,
     Picker
 } from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
-import * as viewActions from '../../reducers/view.action';
+import { connect } from 'react-redux';
 
 import ViewItem from '../components/ViewItem';
 import {ItemSeparator} from '../components/Common';
@@ -25,65 +23,56 @@ const renderItem = ({item}) => (
     <ViewItem title={item.title} rented={item.rented} rental={item.rental}/>
 );
 
+const renderHeader = (props) => (
+    <View>
+        <Text>{typeof props}</Text>
+    </View>
+);
+
 const SectionSeparator = () => (
     <View style={styles.sectionSeparator}></View>
 );
 
-class History extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {date: props.date};
-    }
-
-    changeDate(date, position) {
-        this.setState({date});
-        this.props.retrieveHistory(date);
-    }
-
-    render() {
-        let {histories} = this.props;
-        return (
-            <View style={styles.pickerView}>
-                <Picker style={styles.picker} mode="dropdown" onValueChange={this.changeDate.bind(this)} selectedValue={this.state.date}>
-                    {histories.map((item) => (<Picker.Item key={item} label={item} value={item} />))}
-                </Picker>
-            </View>
-        )
-    }
-}
-
 class ViewScreen extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {date: '', rentals: []};
     }
 
     componentWillMount() {
-		this._retrieveLatest();
-	}
+        this.retrieveLatest();
+    }
 
-    componentDidMount() {
-		this._retrieveLatest();
-	}
+    retrieveLatest() {
+        let {history} = this.props;
+        if (history && history.length) {
+            let latest = history[history.length - 1];
+            this.setState({date: latest.date, rentals: latest.data});
+        }
+    }
 
-    _retrieveLatest() {
-		this.props.actions.retrieveLatest();
-	}
-
-    retrieveHistory(date) {
-        this.props.actions.retrieveByDate(date);
+    changeDate(date, position) {
+        this.setState({date, rentals: this.props.history[position].data || []});
     }
 
     render() {
+        let {history} = this.props;
         return (
             <View style={styles.container}>
-                <History date={this.props.date} histories={this.props.histories} retrieveHistory={this.retrieveHistory.bind(this)} />
+                <View style={styles.pickerView}>
+                    <Picker style={styles.picker} mode="dropdown" onValueChange={this.changeDate.bind(this)} selectedValue={this.state.date}>
+                        {history.map((item) => (<Picker.Item key={item.date} label={item.date} value={item.date} />))}
+                    </Picker>
+                </View>
                 <SectionList
                     renderSectionHeader={renderSectionHeader}
                     SectionSeparatorComponent={SectionSeparator}
-                    stickySectionHeadersEnabled={true}
+                    stickySectionHeadersEnabled={false}
+                    renderListHeader={renderHeader}
                     renderItem={renderItem}
                     ItemSeparatorComponent={ItemSeparator}
-                    sections={this.props.rentals}/>
+                    sections={this.state.rentals}/>
             </View>
         );
     }
@@ -104,18 +93,9 @@ const extractDate = (rental) => (
 );
 
 function mapStateToProps(state, ownProps) {
-    let index = findAllByDate(state.rental, state.date);
 	return {
-		rentals: index === undefined ? [] : state.rental[index].data,
-        date: state.date,
-        histories: extractDate(state.rental),
+        history: state.history
 	};
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		actions: bindActionCreators(viewActions, dispatch)
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ViewScreen);
+export default connect(mapStateToProps)(ViewScreen);
