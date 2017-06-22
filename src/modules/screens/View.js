@@ -3,8 +3,7 @@ import {
     Text,
     View,
     SectionList,
-    Picker,
-    Alert
+    Picker
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -104,21 +103,12 @@ const extractDate = (rental) => (
     ))
 );
 
-const format = (obj) => {
-    let str = '';
-    for (key of Object.keys(obj)) {
-        str += key + ' ';
-    }
-    return str;
-}
-
 function mapStateToProps(state, ownProps) {
-    let viewState = state.view;
-    let index = findAllByDate(viewState.rental, viewState.date);
+    let index = findAllByDate(state.rental, state.date);
 	return {
-		rentals: index === undefined ? [] : viewState.rental[index].data,
-        date: viewState.date,
-        histories: extractDate(viewState.rental),
+		rentals: index === undefined ? [] : state.rental[index].data,
+        date: state.date,
+        histories: extractDate(state.rental),
 	};
 }
 

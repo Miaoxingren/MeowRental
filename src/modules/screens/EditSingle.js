@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import {
     Text,
     View,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native';
 import {ItemSeparator, NumInput} from '../components/Common';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import * as editActions from '../../reducers/edit.action';
 
 import styles from '../styles/EditSingle';
 import common from '../styles/Common';
@@ -33,13 +38,14 @@ class Row extends Component {
     }
 }
 
-export default class EditSingleScreen extends Component {
+class EditSingleScreen extends Component {
 
     constructor(props) {
         super(props);
     }
 
     render() {
+        let {single} = this.props;
         return (
             <View style={common.container}>
                 <Row title={lang.unit.water} default={single.water}/>
@@ -53,3 +59,28 @@ export default class EditSingleScreen extends Component {
         );
     }
 }
+
+function mapStateToProps(state, ownProps) {
+    Alert.alert(format(state));
+    let editState = state;
+	return {
+		single: editState.single,
+	};
+}
+
+const format = (obj) => {
+    let str = '';
+    for (key of Object.keys(obj)) {
+        str += key + ' ';
+    }
+    return str;
+}
+
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(editActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditSingleScreen);
