@@ -21,7 +21,7 @@ class NumInput extends Component {
     }
 
     onChangeNum(num) {
-        if (/^(\d+\.)?\d+$/.test(num) || !num) {
+        if (/^(\d+\.)?\d+$/.test(num) || /^\d+\.$/.test(num) || !num) {
             this.setState({num});
             this.props.passNum(num);
         }

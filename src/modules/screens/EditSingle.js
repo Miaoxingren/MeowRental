@@ -61,7 +61,6 @@ class EditSingleScreen extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-    Alert.alert(format(state));
     let editState = state;
 	return {
 		single: editState.single,

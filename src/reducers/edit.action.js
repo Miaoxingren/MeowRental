@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 
-export function retrieveLatest() {
+export function editSingle(key, val) {
 	return {
 		type: types.VIEW_LATEST,
 	};
