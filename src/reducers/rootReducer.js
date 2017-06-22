@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import edit from './edit.reducer';
+import {single, history, preview} from './edit.reducer';
 
 const rootReducer = combineReducers({
-	history: edit,
-    single: edit,
-    preview: edit
+    single: single,
+	history: history,
+    preview: preview,
 });
 
 export default rootReducer;

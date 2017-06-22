@@ -30,6 +30,7 @@ const chinese = {
     flat: '房号',
     lastMonth: '上月',
     thisMonth: '本月',
+    submit: '提交',
 };
 
 export default chinese;

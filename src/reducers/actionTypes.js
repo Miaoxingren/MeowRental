@@ -1,3 +1,4 @@
+export const EDIT_DEFAULT = 'EDIT_DEFAULT';
 
 export const EDIT_SINGLE_WATER = 'EDIT_SINGLE_WATER';
 export const EDIT_SINGLE_POWER = 'EDIT_SINGLE_POWER';

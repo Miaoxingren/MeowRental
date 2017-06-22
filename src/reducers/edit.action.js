@@ -2,7 +2,8 @@ import * as types from './actionTypes';
 
 export function editSingle(key, val) {
 	return {
-		type: types.VIEW_LATEST,
+		type: types['EDIT_SINGLE_' + key.toUpperCase()] || types.EDIT_DEFAULT,
+        val,
 	};
 }
 

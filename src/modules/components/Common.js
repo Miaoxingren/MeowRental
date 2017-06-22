@@ -17,7 +17,7 @@ const ItemSeparator = () => (
 class NumInput extends Component {
     constructor(props) {
         super(props);
-        this.state = { num: this.props.default };
+        this.state = { num: this.props.initVal };
     }
 
     onChangeNum(num) {
