@@ -3,6 +3,7 @@ import {
     View,
     FlatList,
     Text,
+    Button,
     Alert
 } from 'react-native';
 import RentalItem from '../components/RentalItem';
@@ -12,7 +13,10 @@ import {connect} from 'react-redux';
 
 import * as editActions from '../../reducers/edit.action';
 
-import styles from '../styles/EditByRental'
+import styles from '../styles/EditByRental';
+import common from '../styles/Common';
+
+import lang from '../lang';
 
 const keyExtractor = (item, index) => item.title;
 
@@ -28,35 +32,62 @@ class EditByRentalScreen extends Component {
         super(props);
     }
 
+    submitRental() {
+        let {single, actions} = this.props;
+        for (key of Object.keys(single)) {
+            if (this.state[key] != single[key]) {
+                actions.editSingle(key, this.state[key]);
+            }
+        }
+        this.props.navigator.pop({
+          animated: true,
+          animationType: 'fade',
+        });
+    }
+
+    passChange(flat, type, val) {
+        this.props.actions.editRental(flat, type, val);
+    }
+
+    renderItem({item}) {
+        let {title, rented, rental} = item;
+        return (
+            <RentalItem title={title} rented={rented} house={rental.house} passChange={this.passChange.bind(this)}/>
+        );
+    }
+
     render() {
         let {flats} = this.props;
         return (
             <View>
                 <FlatList data={flats}
                     keyExtractor={keyExtractor}
-                    renderItem={renderItem}/>
+                    renderItem={this.renderItem.bind(this)}/>
+                <View style={common.row}>
+                    <Button onPress={this.submitRental.bind(this)} title={lang.submit} color="#79B0BA" />
+                </View>
             </View>
         )
     }
 }
 
-function mapStateToProps({history}, ownProps) {
-    let lastMonth = history && history.length ? history[history.length - 1].data : [];
-    let flats = [];
-    for (floor of lastMonth) {
-        floor.data.forEach(({title, key, rented, rental}) => {
-            flats.push({
-                title,
-                key,
-                rented,
-                rental: {
-                    house: rental.house
-                }
-            }
-        )});
-    }
+function mapStateToProps({preview}, ownProps) {
+    // let lastMonth = history && history.length ? history[history.length - 1].data : [];
+    // let flats = [];
+    // for (floor of lastMonth) {
+    //     floor.data.forEach(({title, key, rented, rental}) => {
+    //         flats.push({
+    //             title,
+    //             key,
+    //             rented,
+    //             rental: {
+    //                 house: rental.house
+    //             }
+    //         }
+    //     )});
+    // }
 	return {
-		flats
+		flats: preview
 	};
 }
 

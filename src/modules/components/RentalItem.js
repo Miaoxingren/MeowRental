@@ -16,13 +16,24 @@ export default class RentalItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            num: this.props.house,
+            house: this.props.house,
             rented: true,
         };
     }
 
     toggleRented(rented) {
         this.setState({rented});
+        this.changeValue('rented', rented);
+    }
+
+    changeHouse(house) {
+        this.setState({house});
+        this.changeValue('house', house);
+    }
+
+    changeValue(type, val) {
+        let {title, passChange} = this.props;
+        passChange(title, type, val);
     }
 
     render() {
@@ -38,8 +49,8 @@ export default class RentalItem extends Component {
                         value={this.state.rented}/>
                 </View>
                 <View style={styles.rental}>
-                    <NumInput passNum={(num) => this.setState({num})}
-                        initVal={this.state.num}
+                    <NumInput passNum={this.changeHouse.bind(this)}
+                        initVal={this.state.house}
                         style={common.rowText}
                         editable={this.state.rented}/>
                 </View>

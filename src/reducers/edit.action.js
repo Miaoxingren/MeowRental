@@ -1,15 +1,16 @@
 import * as types from './actionTypes';
 
-export function editSingle(key, val) {
+export function editSingle(type, val) {
 	return {
-		type: types['EDIT_SINGLE_' + key.toUpperCase()] || types.EDIT_DEFAULT,
+		type: types['EDIT_SINGLE_' + type.toUpperCase()] || types.EDIT_DEFAULT,
         val,
 	};
 }
 
-export function retrieveByDate(date) {
+export function editRental(flat, type, val) {
 	return {
-        type: types.VIEW_BY_DATE,
-		date
+		type: types['EDIT_RENTAL_' + type.toUpperCase()] || types.EDIT_DEFAULT,
+        flat,
+        val,
 	};
 }

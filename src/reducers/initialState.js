@@ -303,4 +303,48 @@ const initialState = {
     preview: []
 };
 
+const init = () => {
+    let {history} = initialState;
+    let lastMonth = history && history.length ? history[history.length - 1].data : [];
+    let flats = [];
+    for (let floor of lastMonth) {
+        floor.data.forEach(({title, key, rented, rental}) => {
+            let {
+                waterL,
+                waterT,
+                waterUse,
+                water,
+                powerL,
+                powerT,
+                powerUse,
+                power,
+                house,
+                manage,
+                net,
+            } = rental;
+            flats.push({
+                title,
+                key,
+                rented,
+                rental: {
+                    waterL: waterT,
+                    waterT: '',
+                    // waterUse,
+                    // water,
+                    powerL: powerT,
+                    powerT: '',
+                    // powerUse,
+                    // power,
+                    house,
+                    manage,
+                    net,
+                }
+            }
+        )});
+    }
+    initialState.preview = flats;
+}
+
+init();
+
 export default initialState;

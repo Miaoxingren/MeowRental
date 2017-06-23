@@ -49,6 +49,10 @@ const styles = StyleSheet.create({
     switch: {
         backgroundColor: 'transparent',
     },
+    row: {
+        marginHorizontal: 10,
+        marginTop: 15,
+    },
     rowText: {
         fontSize: 18,
         textAlign: 'center',

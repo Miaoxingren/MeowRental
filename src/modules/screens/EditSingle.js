@@ -28,7 +28,7 @@ class Row extends Component {
     render() {
         let {title, initVal, passNum} = this.props;
         return (
-            <View style={styles.row}>
+            <View style={common.row}>
                 <View style={common.info}><Text style={common.infoText}>{title}</Text></View>
                 <View style={styles.value}>
                     <NumInput
@@ -91,7 +91,7 @@ class EditSingleScreen extends Component {
                 <Row action="net" title={lang.unit.net} initVal={single.net} edit={this.editSingle.bind(this)}/>
                 <ItemSeparator />
                 <Row action="manage" title={lang.unit.manage} initVal={single.manage} edit={this.editSingle.bind(this)}/>
-                <View style={styles.row}>
+                <View style={common.row}>
                     <Button onPress={this.submitSingle.bind(this)} title={lang.submit} color="#79B0BA" />
                 </View>
             </View>
