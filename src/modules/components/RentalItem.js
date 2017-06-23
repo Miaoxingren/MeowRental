@@ -3,7 +3,8 @@ import {
     View,
     Text,
     TextInput,
-    Switch
+    Switch,
+    Alert
 } from 'react-native';
 
 import {NumInput} from '../components/Common';
@@ -15,7 +16,7 @@ export default class RentalItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            num: this.props.rental,
+            num: this.props.house,
             rented: true,
         };
     }
@@ -38,7 +39,7 @@ export default class RentalItem extends Component {
                 </View>
                 <View style={styles.rental}>
                     <NumInput passNum={(num) => this.setState({num})}
-                        default={this.state.num}
+                        initVal={this.state.num}
                         style={common.rowText}
                         editable={this.state.rented}/>
                 </View>

@@ -14,8 +14,6 @@ import * as editActions from '../../reducers/edit.action';
 import styles from '../styles/EditSingle';
 import common from '../styles/Common';
 
-import {single} from '../data';
-
 import lang from '../lang';
 
 class Row extends Component {
@@ -53,7 +51,7 @@ class EditSingleScreen extends Component {
     submitSingle() {
         let {single, actions} = this.props;
         for (key of Object.keys(single)) {
-            if (this.state[key] !== single[key]) {
+            if (this.state[key] != single[key]) {
                 actions.editSingle(key, this.state[key]);
             }
         }

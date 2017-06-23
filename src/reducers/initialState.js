@@ -1,9 +1,9 @@
 const initialState = {
     single: {
-        water: '8',
-        power: '1.3',
-        net: '50',
-        manage: '20'
+        water: 8,
+        power: 1.3,
+        net: 50,
+        manage: 20
     },
     history: [
         {
@@ -14,7 +14,7 @@ const initialState = {
                         {
                             title: '101',
                             key: '101',
-                            rented: true,
+                            rented: false,
                             rental: {
                                 waterL: 1,
                                 waterT: 1,
