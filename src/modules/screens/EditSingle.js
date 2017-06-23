@@ -54,7 +54,7 @@ class EditSingleScreen extends Component {
         let {single, actions} = this.props;
         for (key of Object.keys(single)) {
             if (this.state[key] !== single[key]) {
-                this.props.actions.editSingle(key, this.state[key]);
+                actions.editSingle(key, this.state[key]);
             }
         }
         this.props.navigator.pop({
