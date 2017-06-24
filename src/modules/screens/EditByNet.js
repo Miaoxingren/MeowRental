@@ -25,10 +25,10 @@ class EditByNetScreen extends Component {
     }
 
     renderItem({item}) {
-        let {title, rental} = item;
+        let {title, rented, rental} = item;
         let {net} = rental;
         return (
-            <NetItem title={title} net={net} passChange={this.passChange.bind(this)}/>
+            <NetItem title={title} rented={rented} net={net} passChange={this.passChange.bind(this)}/>
         );
     }
 

@@ -39,10 +39,10 @@ class EditByPowerScreen extends Component {
     }
 
     renderItem({item}) {
-        let {title, rental} = item;
+        let {title, rented, rental} = item;
         let {powerL, powerT} = rental;
         return (
-            <PowerItem title={title} powerL={powerL} powerT={powerT} passChange={this.passChange.bind(this)}/>
+            <PowerItem title={title} rented={rented} powerL={powerL} powerT={powerT} passChange={this.passChange.bind(this)}/>
         );
     }
 

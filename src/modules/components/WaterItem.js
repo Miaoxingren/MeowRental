@@ -32,6 +32,7 @@ export default class WaterItem extends Component {
     }
 
     render() {
+        let {rented} = this.props;
         return (
             <View style={common.flexByRow}>
                 <View style={common.flexChild}>
@@ -40,12 +41,14 @@ export default class WaterItem extends Component {
                 <View style={[styles.water, styles.waterL]}>
                     <NumInput passNum={this.changeWaterL.bind(this)}
                         initVal={this.state.waterL}
-                        style={common.rowText}/>
+                        style={common.rowText}
+                        editable={rented}/>
                 </View>
                 <View style={styles.water}>
                     <NumInput passNum={this.changeWaterT.bind(this)}
                         initVal={this.state.waterT}
-                        style={common.rowText}/>
+                        style={common.rowText}
+                        editable={rented}/>
                 </View>
             </View>
         );

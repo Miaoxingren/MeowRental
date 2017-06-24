@@ -29,6 +29,7 @@ export default class NetItem extends Component {
     }
 
     render() {
+        let {rented} = this.props;
         return (
             <View style={common.flexByRow}>
                 <View style={common.flexChild}>
@@ -38,7 +39,8 @@ export default class NetItem extends Component {
                     <Switch
                         style={common.switch}
                         onValueChange={this.toggleNet.bind(this)}
-                        value={this.state.neted}/>
+                        value={this.state.neted}
+                        disabled={!rented}/>
                 </View>
             </View>
         );

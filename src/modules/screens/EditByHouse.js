@@ -2,22 +2,23 @@ import React, {Component} from 'react';
 import {
     View,
     FlatList,
-    Text
+    Text,
+    Alert
 } from 'react-native';
-import RentalItem from '../components/RentalItem';
+import HouseItem from '../components/HouseItem';
 import {NumInput} from '../components/Common';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import * as editActions from '../../reducers/edit.action';
 
-import styles from '../styles/EditByRental';
+import styles from '../styles/EditByHouse';
 
 import lang from '../lang';
 
 const keyExtractor = (item, index) => item.title;
 
-class EditByRentalScreen extends Component {
+class EditByHouseScreen extends Component {
     constructor(props) {
         super(props);
     }
@@ -29,7 +30,7 @@ class EditByRentalScreen extends Component {
     renderItem({item}) {
         let {title, rented, rental} = item;
         return (
-            <RentalItem title={title} rented={rented} house={rental.house} passChange={this.passChange.bind(this)}/>
+            <HouseItem title={title} rented={rented} house={rental.house} passChange={this.passChange.bind(this)}/>
         );
     }
 
@@ -57,4 +58,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditByRentalScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(EditByHouseScreen);

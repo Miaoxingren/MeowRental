@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import {Alert} from 'react-native';
 
 export function editSingle(type, val) {
 	return {

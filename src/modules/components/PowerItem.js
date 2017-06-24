@@ -32,6 +32,7 @@ export default class PowerItem extends Component {
     }
 
     render() {
+        let {rented} = this.props;
         return (
             <View style={common.flexByRow}>
                 <View style={common.flexChild}>
@@ -40,12 +41,14 @@ export default class PowerItem extends Component {
                 <View style={[styles.power, styles.powerL]}>
                     <NumInput passNum={this.changePowerL.bind(this)}
                         initVal={this.state.powerL}
-                        style={common.rowText}/>
+                        style={common.rowText}
+                        editable={rented}/>
                 </View>
                 <View style={styles.power}>
                     <NumInput passNum={this.changePowerT.bind(this)}
                         initVal={this.state.powerT}
-                        style={common.rowText}/>
+                        style={common.rowText}
+                        editable={rented}/>
                 </View>
             </View>
         );

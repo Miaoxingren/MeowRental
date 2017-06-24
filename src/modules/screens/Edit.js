@@ -13,7 +13,7 @@ import lang from '../lang';
 export default class EditScren extends Component {
     static navs = {
         'single': {screen: 'meowrental.EditSingle', title: lang.editSingle},
-        'rental': {screen: 'meowrental.EditByRental', title: lang.editByRental},
+        'house': {screen: 'meowrental.EditByHouse', title: lang.editByHouse},
         'water': {screen: 'meowrental.EditByWater', title: lang.editByWater},
         'power': {screen: 'meowrental.EditByPower', title: lang.editByPower},
         'net': {screen: 'meowrental.EditByNet', title: lang.editByNet},
@@ -41,7 +41,7 @@ export default class EditScren extends Component {
         return (
             <View style={common.container}>
                 <EditItem navTo={this.navTo.bind(this)} navKey='single' text={lang.editSingle} />
-                <EditItem navTo={this.navTo.bind(this)} navKey='rental' text={lang.editByRental} />
+                <EditItem navTo={this.navTo.bind(this)} navKey='house' text={lang.editByHouse} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='water' text={lang.editByWater} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='power' text={lang.editByPower} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='net' text={lang.editByNet} />

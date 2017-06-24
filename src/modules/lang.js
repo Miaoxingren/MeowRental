@@ -17,7 +17,7 @@ const chinese = {
     manage: '卫生/管理费：',
     total: '总计：',
     editSingle: '编辑单价',
-    editByRental: '编辑租金',
+    editByHouse: '编辑租金',
     editByWater: '编辑水费',
     editByPower: '编辑电费',
     editByNet: '编辑网费',

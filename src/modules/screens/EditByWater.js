@@ -39,10 +39,10 @@ class EditByWaterScreen extends Component {
     }
 
     renderItem({item}) {
-        let {title, rental} = item;
+        let {title, rented, rental} = item;
         let {waterL, waterT} = rental;
         return (
-            <WaterItem title={title} waterL={waterL} waterT={waterT} passChange={this.passChange.bind(this)}/>
+            <WaterItem title={title} rented={rented} waterL={waterL} waterT={waterT} passChange={this.passChange.bind(this)}/>
         );
     }
 

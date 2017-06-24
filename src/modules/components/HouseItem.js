@@ -9,15 +9,16 @@ import {
 
 import {NumInput} from '../components/Common';
 
-import styles from '../styles/EditByRental';
+import styles from '../styles/EditByHouse';
 import common from '../styles/Common';
 
-export default class RentalItem extends Component {
+export default class HouseItem extends Component {
     constructor(props) {
         super(props);
+        let {house, rented} = this.props;
         this.state = {
-            house: this.props.house,
-            rented: true,
+            house,
+            rented,
         };
     }
 

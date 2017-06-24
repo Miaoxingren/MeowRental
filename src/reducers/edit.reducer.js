@@ -47,6 +47,7 @@ function preview(state = initialState.preview, action) {
     if (pos === undefined) return state;
     let modification = getModification(action, state[pos]);
     switch (action.type) {
+        case types.EDIT_RENTAL_RENTED:
         case types.EDIT_RENTAL_WATERL:
         case types.EDIT_RENTAL_WATERT:
         case types.EDIT_RENTAL_WATERUSE:
@@ -81,6 +82,14 @@ const getModification = (action, flat) => {
         power,
     } = flat.rental;
     switch (type) {
+        case types.EDIT_RENTAL_RENTED:
+            return {
+                ...flat,
+                rented: val,
+                rental: {
+                    ...flat.rental,
+                }
+            };
         case types.EDIT_RENTAL_WATERL:
             waterL = val;
             waterUse = parseInt(waterT) - parseInt(waterL);
