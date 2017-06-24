@@ -22,7 +22,7 @@ class Row extends Component {
     }
 
     passNum(num) {
-        this.props.edit(this.props.action, num);
+        this.props.passChange(this.props.action, num);
     }
 
     render() {
@@ -48,60 +48,29 @@ class EditSingleScreen extends Component {
         this.state = {...this.props.single};
     }
 
-    submitSingle() {
-        let {single, actions} = this.props;
-        for (key of Object.keys(single)) {
-            if (this.state[key] != single[key]) {
-                actions.editSingle(key, this.state[key]);
-            }
-        }
-        this.props.navigator.pop({
-          animated: true,
-          animationType: 'fade',
-        });
-    }
-
-    editSingle(key, val) {
-        switch (key) {
-            case 'water':
-                this.setState({water: val});
-                break;
-            case 'power':
-                this.setState({power: val});
-                break;
-            case 'net':
-                this.setState({net: val});
-                break;
-            case 'manage':
-                this.setState({manage: val});
-                break;
-            default:
-                return;
-        }
+    passChange(type, val) {
+        this.props.actions.editSingle(type, val);
     }
 
     render() {
         let {single} = this.props;
         return (
             <View style={common.container}>
-                <Row action="water" title={lang.unit.water} initVal={single.water} edit={this.editSingle.bind(this)}/>
+                <Row action="water" title={lang.unit.water} initVal={single.water} passChange={this.passChange.bind(this)}/>
                 <ItemSeparator />
-                <Row action="power" title={lang.unit.power} initVal={single.power} edit={this.editSingle.bind(this)}/>
+                <Row action="power" title={lang.unit.power} initVal={single.power} passChange={this.passChange.bind(this)}/>
                 <ItemSeparator />
-                <Row action="net" title={lang.unit.net} initVal={single.net} edit={this.editSingle.bind(this)}/>
+                <Row action="net" title={lang.unit.net} initVal={single.net} passChange={this.passChange.bind(this)}/>
                 <ItemSeparator />
-                <Row action="manage" title={lang.unit.manage} initVal={single.manage} edit={this.editSingle.bind(this)}/>
-                <View style={common.row}>
-                    <Button onPress={this.submitSingle.bind(this)} title={lang.submit} color="#79B0BA" />
-                </View>
+                <Row action="manage" title={lang.unit.manage} initVal={single.manage} passChange={this.passChange.bind(this)}/>
             </View>
         );
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({single}, ownProps) {
 	return {
-		single: state.single,
+		single,
 	};
 }
 

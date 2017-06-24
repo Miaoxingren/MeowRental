@@ -23,7 +23,7 @@ class NumInput extends Component {
     onChangeNum(num) {
         if (/^(\d+\.)?\d+$/.test(num) || /^\d+\.$/.test(num) || !num) {
             this.setState({num});
-            this.props.passNum(num);
+            this.props.passNum(parseFloat(num));
         }
     }
 

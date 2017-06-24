@@ -29,17 +29,48 @@ function single(state = initialState.single, action) {
     }
 }
 
-function history(state = initialState, action) {
+function history(state = initialState.history, action) {
     switch (action.type) {
 
-        case types.EDIT_SINGLE:
-            return {
+        case types.HISTORY_PUSH_LATEST:
+            let latest = generateHistory(action.data, action.date);
+            if (state && state.length && state[state.length - 1].date === action.date) {
+                return [
+                    ...state.slice(0, -1),
+                    latest
+                ];
+            }
+            return [
                 ...state,
-                date: state.rental[state.rental.length - 1].date
-            };
+                latest
+            ];
         default:
             return state;
     }
+}
+
+const getFloorNum = (flatNum) => {
+    return flatNum[0] || '0';
+};
+
+const generateHistory = (data, date) => {
+    let floors = [];
+    for (let flat of data) {
+        let floorNum = getFloorNum(flat.title);
+        let floor = floors[floorNum];
+        if (!floor) {
+            floor = floors[floorNum] = [];
+        }
+        floor.push(flat);
+    }
+    let result = [];
+    for (let [index, floor] of Object.entries(floors)) {
+        result.push({
+            data: floor,
+            key: index
+        });
+    }
+    return {data: result, date};
 }
 
 function preview(state = initialState.preview, action) {

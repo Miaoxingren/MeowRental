@@ -16,3 +16,11 @@ export function editRental(flat, type, val, price) {
         price
 	};
 }
+
+export function generateLatest(data) {
+	return {
+		type: types.HISTORY_PUSH_LATEST,
+        date: new Date().toISOString().substr(0, 7),
+        data
+	};
+}

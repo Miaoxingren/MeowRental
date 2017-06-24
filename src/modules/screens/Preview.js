@@ -3,10 +3,15 @@ import {
     Text,
     View,
     FlatList,
-    Button
+    Button,
+    TouchableOpacity,
+    Image
 } from 'react-native';
 
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as editActions from '../../reducers/edit.action';
 
 import ViewItem from '../components/ViewItem';
 import {ItemSeparator} from '../components/Common';
@@ -20,8 +25,6 @@ const renderItem = ({item}) => (
     <ViewItem title={item.title} rented={item.rented} rental={item.rental}/>
 );
 
-const renderHeader = () => (1);
-
 const keyExtractor = (item, index) => item.title;
 
 class PreviewScreen extends Component {
@@ -30,7 +33,9 @@ class PreviewScreen extends Component {
     }
 
     submit() {
-        this.props.navigator.pop({
+        let {navigator, actions, preview} = this.props;
+        actions.generateLatest(preview);
+        navigator.pop({
           animated: true,
           animationType: 'fade',
         });
@@ -38,16 +43,16 @@ class PreviewScreen extends Component {
 
     render() {
         let {preview} = this.props;
+        let saveImg = require('../../img/save.png');
         return (
-            <View style={styles.container}>
+            <View style={styles.preview}>
                 <FlatList data={preview}
                     keyExtractor={keyExtractor}
-                    renderListHeader={renderHeader}
                     renderItem={renderItem}
                     ItemSeparatorComponent={ItemSeparator}/>
-                <View style={common.row}>
-                    <Button onPress={this.submit.bind(this)} title={lang.submit} color="#79B0BA" />
-                </View>
+                <TouchableOpacity onPress={this.submit.bind(this)} activeOpacity={0.6} style={styles.save}>
+                    <Image style={styles.saveImg} source={saveImg} resizeMode="contain"/>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -59,4 +64,10 @@ function mapStateToProps({preview}, ownProps) {
 	};
 }
 
-export default connect(mapStateToProps)(PreviewScreen);
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(editActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PreviewScreen);

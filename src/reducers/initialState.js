@@ -311,13 +311,7 @@ const init = () => {
         floor.data.forEach(({title, key, rented, rental}) => {
             let {
                 waterL,
-                waterT,
-                waterUse,
-                water,
                 powerL,
-                powerT,
-                powerUse,
-                power,
                 house,
                 manage,
                 net,
@@ -327,11 +321,11 @@ const init = () => {
                 key,
                 rented,
                 rental: {
-                    waterL: waterL,
+                    waterL,
                     waterT: waterL,
                     waterUse: 0,
                     water: 0,
-                    powerL: powerL,
+                    powerL,
                     powerT: powerL,
                     powerUse: 0,
                     power: 0,

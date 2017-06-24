@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#eee'
+        backgroundColor: '#eee',
     },
     pickerView: {
         backgroundColor: '#79B0BA',
@@ -59,6 +59,23 @@ const styles = StyleSheet.create({
         fontSize: 20,
         backgroundColor: '#808c9e',
         color: '#F0F0F0',
+    },
+    preview: {
+        backgroundColor: '#eee',
+        position: 'relative',
+        paddingVertical: 15
+    },
+    save: {
+        width: 64,
+        height: 64,
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        bottom: 64,
+        right: 10
+    },
+    saveImg: {
+        width: 64,
+        height: 64,
     }
 });
 
