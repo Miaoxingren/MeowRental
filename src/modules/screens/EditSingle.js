@@ -99,14 +99,6 @@ class EditSingleScreen extends Component {
     }
 }
 
-const format = (obj) => {
-    let str = '';
-    for (key of Object.keys(obj)) {
-        str += key + ' ';
-    }
-    return str;
-}
-
 function mapStateToProps(state, ownProps) {
 	return {
 		single: state.single,

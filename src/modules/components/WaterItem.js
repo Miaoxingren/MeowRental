@@ -12,7 +12,23 @@ import common from '../styles/Common';
 export default class WaterItem extends Component {
     constructor(props) {
         super(props);
-        this.state = { textL: this.props.waterL, textT: this.props.waterT };
+        let {waterL, waterT} = this.props;
+        this.state = { waterL, waterT };
+    }
+
+    changeWaterL(waterL) {
+        this.setState({waterL});
+        this.changeValue('waterL', waterL);
+    }
+
+    changeWaterT(waterT) {
+        this.setState({waterT});
+        this.changeValue('waterT', waterT);
+    }
+
+    changeValue(type, val) {
+        let {title, passChange} = this.props;
+        passChange(title, type, val);
     }
 
     render() {
@@ -22,13 +38,15 @@ export default class WaterItem extends Component {
                     <Text style={common.rowText}>{this.props.title}</Text>
                 </View>
                 <View style={[styles.water, styles.waterL]}>
-                    <NumInput passNum={(num) => this.setState({textL: num})}
-                        default={this.state.textL}
+                    <NumInput passNum={this.changeWaterL.bind(this)}
+                        initVal={this.props
+                        .waterL}
                         style={common.rowText}/>
                 </View>
                 <View style={styles.water}>
-                    <NumInput passNum={(num) => this.setState({textT: num})}
-                        default={this.state.textT}
+                    <NumInput passNum={this.changeWaterT.bind(this)}
+                        initVal={this.props
+                        .waterT}
                         style={common.rowText}/>
                 </View>
             </View>

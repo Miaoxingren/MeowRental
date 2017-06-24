@@ -3,20 +3,26 @@ import {
     View,
     SectionList,
     Text,
-    TextInput
+    TextInput,
+    Button,
+    Alert
 } from 'react-native';
 import WaterItem from '../components/WaterItem';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
+import * as editActions from '../../reducers/edit.action';
 
 import styles from '../styles/EditByWater';
 import common from '../styles/Common';
 
 import lang from '../lang';
 
-import {water} from '../data';
-
 const calculateWater = ({lastMonth, thisMonth}) => (
     Math.round((thisMonth - lastMonth) * 1.3)
 );
+
+const keyExtractor = (item, index) => item.title;
 
 const renderSectionHeader = ({section}) => (
     <View style={[common.flexByRow, styles.headerItem]}>
@@ -26,24 +32,50 @@ const renderSectionHeader = ({section}) => (
     </View>
 );
 
-const renderItem = ({item}) => (
-    <WaterItem title={item.title} key={item.key} waterL={item.waterL} waterT={item.waterT}/>
-);
-
-export default class EditByWater extends Component {
+class EditByWaterScreen extends Component {
     constructor(props) {
         super(props);
     }
 
+    passChange(flat, type, val) {
+        let {price, actions} = this.props;
+        actions.editRental(flat, type, val, price);
+    }
+
+    renderItem({item}) {
+        let {title, rental} = item;
+        let {waterL, waterT} = rental;
+        return (
+            <WaterItem title={title} waterL={waterL} waterT={waterT} passChange={this.passChange.bind(this)}/>
+        );
+    }
+
     render() {
+        let {flats} = this.props;
         return (
             <View>
                 <SectionList
                     stickySectionHeadersEnabled={true}
+                    keyExtractor={keyExtractor}
                     renderSectionHeader={renderSectionHeader}
-                    renderItem={renderItem}
-                    sections={[{data: water, key: 'water'}]}/>
+                    renderItem={this.renderItem.bind(this)}
+                    sections={[{data: flats, key: 'water'}]}/>
             </View>
         )
     }
 }
+
+function mapStateToProps({single, preview}, ownProps) {
+	return {
+        price: single.water,
+		flats: preview
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(editActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditByWaterScreen);

@@ -44,7 +44,7 @@ function history(state = initialState, action) {
 
 function preview(state = initialState.preview, action) {
     let pos = getPosByFlat(state, action.flat);
-    if (!pos) return state;
+    if (pos === undefined) return state;
     let modification = getModification(action, state[pos]);
     switch (action.type) {
         case types.EDIT_RENTAL_WATERL:
@@ -69,22 +69,44 @@ function preview(state = initialState.preview, action) {
 }
 
 const getModification = (action, flat) => {
-    let {type, val} = action;
+    let {type, val, price} = action;
+    let {
+        waterT,
+        waterL,
+        waterUse,
+        water,
+        powerL,
+        powerT,
+        powerUse,
+        power,
+    } = flat.rental;
     switch (type) {
         case types.EDIT_RENTAL_WATERL:
+            waterL = val;
+            waterUse = parseInt(waterT) - parseInt(waterL);
+            water = Math.round(waterUse * price);
             return {
                 ...flat,
                 rental: {
                     ...flat.rental,
-                    waterL: val,
+                    waterL,
+                    waterT,
+                    waterUse,
+                    water,
                 }
             };
         case types.EDIT_RENTAL_WATERT:
+            waterT = val;
+            waterUse = parseInt(waterT) - parseInt(waterL);
+            water = Math.round(waterUse * price);
             return {
                 ...flat,
                 rental: {
                     ...flat.rental,
-                    waterT: val,
+                    waterL,
+                    waterT,
+                    waterUse,
+                    water,
                 }
             };
         case types.EDIT_RENTAL_WATERUSE:
@@ -104,19 +126,31 @@ const getModification = (action, flat) => {
                 }
             };
         case types.EDIT_RENTAL_POWERL:
+            powerL = val;
+            powerUse = parseInt(powerT) - parseInt(powerL);
+            power = Math.round(powerUse * price);
             return {
                 ...flat,
                 rental: {
                     ...flat.rental,
-                    powerL: val,
+                    powerL,
+                    powerT,
+                    powerUse,
+                    power,
                 }
             };
         case types.EDIT_RENTAL_POWERT:
+            powerT = val;
+            powerUse = parseInt(powerT) - parseInt(powerL);
+            power = Math.round(powerUse * price);
             return {
                 ...flat,
                 rental: {
                     ...flat.rental,
-                    powerT: val,
+                    powerL,
+                    powerT,
+                    powerUse,
+                    power,
                 }
             };
         case types.EDIT_RENTAL_POWERUSE:

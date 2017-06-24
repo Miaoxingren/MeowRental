@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import {
     View,
     FlatList,
-    Text,
-    Button,
-    Alert
+    Text
 } from 'react-native';
 import RentalItem from '../components/RentalItem';
 import {NumInput} from '../components/Common';
@@ -14,18 +12,10 @@ import {connect} from 'react-redux';
 import * as editActions from '../../reducers/edit.action';
 
 import styles from '../styles/EditByRental';
-import common from '../styles/Common';
 
 import lang from '../lang';
 
 const keyExtractor = (item, index) => item.title;
-
-const renderItem = ({item}) => {
-    let {title, rented, rental} = item;
-    return (
-        <RentalItem title={title} rented={rented} house={rental.house}/>
-    );
-};
 
 class EditByRentalScreen extends Component {
     constructor(props) {
@@ -63,29 +53,12 @@ class EditByRentalScreen extends Component {
                 <FlatList data={flats}
                     keyExtractor={keyExtractor}
                     renderItem={this.renderItem.bind(this)}/>
-                <View style={common.row}>
-                    <Button onPress={this.submitRental.bind(this)} title={lang.submit} color="#79B0BA" />
-                </View>
             </View>
         )
     }
 }
 
 function mapStateToProps({preview}, ownProps) {
-    // let lastMonth = history && history.length ? history[history.length - 1].data : [];
-    // let flats = [];
-    // for (floor of lastMonth) {
-    //     floor.data.forEach(({title, key, rented, rental}) => {
-    //         flats.push({
-    //             title,
-    //             key,
-    //             rented,
-    //             rental: {
-    //                 house: rental.house
-    //             }
-    //         }
-    //     )});
-    // }
 	return {
 		flats: preview
 	};
