@@ -60,8 +60,8 @@ const RentalDetail = ({rental}) => {
 };
 
 const ViewItemDetail = ({rented, rental}) => (
-    rented ? (<RentalDetail rental={rental} />) : (<View>
-        <Text>未租出</Text>
+    rented ? (<RentalDetail rental={rental} />) : (<View style={styles.unrented}>
+        <Text style={styles.unrentedText}>未租出</Text>
     </View>)
 );
 

@@ -30,6 +30,17 @@ const styles = StyleSheet.create({
     item: {
         marginHorizontal: 20,
     },
+    unrented: {
+        backgroundColor: '#808c9e',
+        borderTopWidth: 1,
+        borderTopColor: 'rgba(0, 0, 0, 0.08)',
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+    },
+    unrentedText: {
+        color: '#F0F0F0',
+        fontSize: 18
+    },
     detailBox: {
         flex: 1,
         flexDirection: 'row',
