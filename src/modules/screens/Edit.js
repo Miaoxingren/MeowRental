@@ -17,6 +17,7 @@ export default class EditScren extends Component {
         'water': {screen: 'meowrental.EditByWater', title: lang.editByWater},
         'power': {screen: 'meowrental.EditByPower', title: lang.editByPower},
         'net': {screen: 'meowrental.EditByNet', title: lang.editByNet},
+        'preview': {screen: 'meowrental.Preview', title: lang.previewRental},
     };
 
     constructor(props) {
@@ -45,6 +46,7 @@ export default class EditScren extends Component {
                 <EditItem navTo={this.navTo.bind(this)} navKey='water' text={lang.editByWater} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='power' text={lang.editByPower} />
                 <EditItem navTo={this.navTo.bind(this)} navKey='net' text={lang.editByNet} />
+                <EditItem navTo={this.navTo.bind(this)} navKey='preview' text={lang.previewRental} />
             </View>
         );
     }

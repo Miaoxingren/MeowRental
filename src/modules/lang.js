@@ -3,6 +3,7 @@ const chinese = {
     edit: '编辑',
     viewRental: '查看房租',
     editRental: '编辑房租',
+    previewRental: '预览房租',
     floor: '楼',
     waterL: '上月水行度：',
     waterT: '本月水行度：',
