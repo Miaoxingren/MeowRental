@@ -3,32 +3,57 @@ import {
     View,
     FlatList,
     Text,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native';
 import NetItem from '../components/NetItem';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
+import * as editActions from '../../reducers/edit.action';
 import styles from '../styles/EditByNet'
-
-import {net} from '../data';
 
 const keyExtractor = (item, index) => item.key;
 
-const renderItem = ({item}) => (
-    <NetItem title={item.title} key={item.key} net={item.net}/>
-);
-
-export default class EditByNet extends Component {
+class EditByNetScreen extends Component {
     constructor(props) {
         super(props);
     }
 
+    passChange(flat, type, val) {
+        this.props.actions.editRental(flat, type, val);
+    }
+
+    renderItem({item}) {
+        let {title, rental} = item;
+        let {net} = rental;
+        return (
+            <NetItem title={title} net={net} passChange={this.passChange.bind(this)}/>
+        );
+    }
+
     render() {
+        let {flats} = this.props;
         return (
             <View>
-                <FlatList data={net}
+                <FlatList data={flats}
                     keyExtractor={keyExtractor}
-                    renderItem={renderItem}/>
+                    renderItem={this.renderItem.bind(this)}/>
             </View>
         )
     }
 }
+
+function mapStateToProps({preview}, ownProps) {
+	return {
+		flats: preview
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(editActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditByNetScreen);

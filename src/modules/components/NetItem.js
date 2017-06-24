@@ -12,11 +12,20 @@ import common from '../styles/Common';
 export default class NetItem extends Component {
     constructor(props) {
         super(props);
-        this.state = { net: this.props.net };
+
+        let {net} = this.props;
+        this.state = { net, neted: net === 50 };
     }
 
     toggleNet(neted) {
-        this.setState({neted, net: neted ? 50 : 0});
+        let net = neted ? 50 : 0;
+        this.setState({neted, net});
+        this.changeValue('net', net);
+    }
+
+    changeValue(type, val) {
+        let {title, passChange} = this.props;
+        passChange(title, type, val);
     }
 
     render() {

@@ -22,19 +22,6 @@ class EditByRentalScreen extends Component {
         super(props);
     }
 
-    submitRental() {
-        let {single, actions} = this.props;
-        for (key of Object.keys(single)) {
-            if (this.state[key] != single[key]) {
-                actions.editSingle(key, this.state[key]);
-            }
-        }
-        this.props.navigator.pop({
-          animated: true,
-          animationType: 'fade',
-        });
-    }
-
     passChange(flat, type, val) {
         this.props.actions.editRental(flat, type, val);
     }
