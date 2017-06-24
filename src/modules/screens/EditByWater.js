@@ -18,10 +18,6 @@ import common from '../styles/Common';
 
 import lang from '../lang';
 
-const calculateWater = ({lastMonth, thisMonth}) => (
-    Math.round((thisMonth - lastMonth) * 1.3)
-);
-
 const keyExtractor = (item, index) => item.title;
 
 const renderSectionHeader = ({section}) => (

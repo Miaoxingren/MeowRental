@@ -39,14 +39,12 @@ export default class WaterItem extends Component {
                 </View>
                 <View style={[styles.water, styles.waterL]}>
                     <NumInput passNum={this.changeWaterL.bind(this)}
-                        initVal={this.props
-                        .waterL}
+                        initVal={this.state.waterL}
                         style={common.rowText}/>
                 </View>
                 <View style={styles.water}>
                     <NumInput passNum={this.changeWaterT.bind(this)}
-                        initVal={this.props
-                        .waterT}
+                        initVal={this.state.waterT}
                         style={common.rowText}/>
                 </View>
             </View>

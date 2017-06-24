@@ -3,20 +3,22 @@ import {
     View,
     SectionList,
     Text,
-    TextInput
+    TextInput,
+    Button,
+    Alert
 } from 'react-native';
 import PowerItem from '../components/PowerItem';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
+import * as editActions from '../../reducers/edit.action';
 
 import styles from '../styles/EditByPower';
 import common from '../styles/Common';
 
 import lang from '../lang';
 
-import {power} from '../data';
-
-const calculatePower = ({lastMonth, thisMonth}) => (
-    Math.round((thisMonth - lastMonth) * 8)
-);
+const keyExtractor = (item, index) => item.title;
 
 const renderSectionHeader = ({section}) => (
     <View style={[common.flexByRow, styles.headerItem]}>
@@ -26,24 +28,50 @@ const renderSectionHeader = ({section}) => (
     </View>
 );
 
-const renderItem = ({item}) => (
-    <PowerItem title={item.title} key={item.key} powerL={item.powerL} powerT={item.powerT}/>
-);
-
-export default class EditByPower extends Component {
+class EditByPowerScreen extends Component {
     constructor(props) {
         super(props);
     }
 
+    passChange(flat, type, val) {
+        let {price, actions} = this.props;
+        actions.editRental(flat, type, val, price);
+    }
+
+    renderItem({item}) {
+        let {title, rental} = item;
+        let {powerL, powerT} = rental;
+        return (
+            <PowerItem title={title} powerL={powerL} powerT={powerT} passChange={this.passChange.bind(this)}/>
+        );
+    }
+
     render() {
+        let {flats} = this.props;
         return (
             <View>
                 <SectionList
                     stickySectionHeadersEnabled={true}
+                    keyExtractor={keyExtractor}
                     renderSectionHeader={renderSectionHeader}
-                    renderItem={renderItem}
-                    sections={[{data: power, key: 'power'}]}/>
+                    renderItem={this.renderItem.bind(this)}
+                    sections={[{data: flats, key: 'power'}]}/>
             </View>
         )
     }
 }
+
+function mapStateToProps({single, preview}, ownProps) {
+	return {
+        price: single.power,
+		flats: preview
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(editActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditByPowerScreen);
