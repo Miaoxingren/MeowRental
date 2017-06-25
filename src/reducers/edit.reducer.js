@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import initialState from './initialState';
 import {Alert} from 'react-native';
+import lang from '../modules/lang';
 
 function single(state = initialState.single, action) {
     switch (action.type) {
@@ -33,6 +34,7 @@ function history(state = initialState.history, action) {
     switch (action.type) {
 
         case types.HISTORY_PUSH_LATEST:
+            saveAsFile();
             let latest = generateHistory(action.data, action.date);
             if (state && state.length && state[state.length - 1].date === action.date) {
                 return [
@@ -44,6 +46,10 @@ function history(state = initialState.history, action) {
                 ...state,
                 latest
             ];
+        case types.HISTORY_SAVE_MONTH:
+            let str = formatAsCSV(action.data, action.date);
+            saveAsFile(str, action.date);
+            return state;
         default:
             return state;
     }
@@ -72,6 +78,79 @@ const generateHistory = (data, date) => {
     }
     return {data: result, date};
 }
+
+const formatAsCSV = (flats, date) => {
+    let result = date + '\n';
+    let heads = [
+        lang.flat,
+        lang.house,
+        lang.manage,
+        lang.net,
+        lang.waterL,
+        lang.waterT,
+        lang.waterUse,
+        lang.water,
+        lang.powerL,
+        lang.powerT,
+        lang.powerUse,
+        lang.power,
+        lang.total
+    ];
+    result += heads.join(',') + '\n';
+    for (let flat of flats) {
+        let {
+            title,
+            key,
+            rented,
+            rental,
+        } = flat;
+        let {
+            waterL,
+            waterT,
+            waterUse,
+            water,
+            powerL,
+            powerT,
+            powerUse,
+            power,
+            house,
+            manage,
+            net,
+        } = rental;
+        let total = rented ? water + power + house + manage + net : 0;
+        let row = [
+            title,
+            house,
+            manage,
+            net,
+            waterL,
+            waterT,
+            waterUse,
+            water,
+            powerL,
+            powerT,
+            powerUse,
+            power,
+            total,
+        ];
+        result += row.join(',') + '\n';
+    }
+    return result;
+};
+
+const RNFS = require('react-native-fs');
+const saveAsFile = (dataStr, fileName) => {
+
+    let path = RNFS.ExternalDirectoryPath + '/' + fileName + '.csv';
+
+    RNFS.writeFile(path, dataStr, 'utf8')
+        .then((success) => {
+            Alert.alert('FILE WRITTEN!', path);
+        })
+        .catch((err) => {
+            Alert.alert('Error', err.message);
+        });
+};
 
 function preview(state = initialState.preview, action) {
     let pos = getPosByFlat(state, action.flat);

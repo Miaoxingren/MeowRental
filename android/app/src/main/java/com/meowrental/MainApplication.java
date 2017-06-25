@@ -13,6 +13,8 @@ import java.util.List;
 
 import com.reactnativenavigation.NavigationApplication;
 
+import com.rnfs.RNFSPackage;
+
 public class MainApplication extends NavigationApplication {
 
     @Override
@@ -21,12 +23,20 @@ public class MainApplication extends NavigationApplication {
         return BuildConfig.DEBUG;
     }
 
+    // protected List<ReactPackage> getPackages() {
+    //     // Add additional packages you require here
+    //     // No need to add RnnPackage and MainReactPackage
+    //     return Arrays.<ReactPackage>asList(
+    //         // eg. new VectorIconsPackage()
+    //     );
+    // }
+
+    // @Override
     protected List<ReactPackage> getPackages() {
-        // Add additional packages you require here
-        // No need to add RnnPackage and MainReactPackage
-        return Arrays.<ReactPackage>asList(
-            // eg. new VectorIconsPackage()
-        );
+      return Arrays.<ReactPackage>asList(
+        // new MainReactPackage(), // <---- add comma
+        new RNFSPackage() // <---------- add package
+      );
     }
 
     @Override

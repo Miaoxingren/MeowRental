@@ -28,18 +28,18 @@ const RentalDetail = ({rental}) => {
     return (
         <View style={styles.detailBox}>
             <View style={styles.detailList}>
-                <Row text={lang.waterL} align='right'/>
-                <Row text={lang.waterT} align='right'/>
-                <Row text={lang.waterUse} align='right'/>
-                <Row text={lang.powerL} align='right'/>
-                <Row text={lang.powerT} align='right'/>
-                <Row text={lang.powerUse} align='right'/>
-                <Row text={lang.water} align='right'/>
-                <Row text={lang.power} align='right'/>
-                <Row text={lang.house} align='right'/>
-                <Row text={lang.manage} align='right'/>
-                <Row text={lang.net} align='right'/>
-                <Row text={lang.total} align='right' total={true}/>
+                <Row text={lang.waterL + lang.colon} align='right'/>
+                <Row text={lang.waterT + lang.colon} align='right'/>
+                <Row text={lang.waterUse + lang.colon} align='right'/>
+                <Row text={lang.powerL + lang.colon} align='right'/>
+                <Row text={lang.powerT + lang.colon} align='right'/>
+                <Row text={lang.powerUse + lang.colon} align='right'/>
+                <Row text={lang.water + lang.colon} align='right'/>
+                <Row text={lang.power + lang.colon} align='right'/>
+                <Row text={lang.house + lang.colon} align='right'/>
+                <Row text={lang.manage + lang.colon} align='right'/>
+                <Row text={lang.net + lang.colon} align='right'/>
+                <Row text={lang.total + lang.colon} align='right' total={true}/>
             </View>
             <View style={styles.detailList}>
                 <Row text={rental.waterL}/>

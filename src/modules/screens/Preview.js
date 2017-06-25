@@ -5,7 +5,8 @@ import {
     FlatList,
     Button,
     TouchableOpacity,
-    Image
+    Image,
+    Alert
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -42,7 +43,8 @@ class PreviewScreen extends Component {
     }
 
     render() {
-        let {preview} = this.props;
+        let {preview, actions} = this.props;
+        actions.saveByMonth(preview, '2017-06');
         let saveImg = require('../../img/save.png');
         return (
             <View style={styles.preview}>

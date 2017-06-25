@@ -24,3 +24,11 @@ export function generateLatest(data) {
         data
 	};
 }
+
+export function saveByMonth(data, date) {
+    return {
+        type: types.HISTORY_SAVE_MONTH,
+        date,
+        data
+    }
+}
