@@ -46,14 +46,16 @@ function history(state = initialState.history, action) {
                 latest
             ];
         case types.HISTORY_SAVE_MONTH:
-
             saveAsFile(action.data, action.date);
+            return state;
+        case types.HISTORY_SAVE_MONTH:
             return state;
         default:
             return state;
     }
 }
 
+const seperator = ',';
 const formatAsCSV = (data, date) => {
     let result = date + '\n';
     let heads = [
@@ -71,7 +73,7 @@ const formatAsCSV = (data, date) => {
         lang.power,
         lang.total
     ];
-    result += heads.join(',') + '\n';
+    result += heads.join(seperator) + '\n';
     for (let flat of data) {
         let {
             title,
@@ -108,7 +110,7 @@ const formatAsCSV = (data, date) => {
             power,
             total,
         ];
-        result += row.join(',') + '\n';
+        result += row.join(seperator) + '\n';
     }
     return result;
 };

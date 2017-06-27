@@ -32,3 +32,9 @@ export function saveByMonth(data, date) {
         date,
     }
 }
+
+export function saveByFlat() {
+    return {
+        type: types.HISTORY_SAVE_FLAT,
+    }
+}

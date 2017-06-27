@@ -22,7 +22,7 @@ class ViewScreen extends Component {
 
         let {history} = this.props;
         let latest = history && history.length ? history[history.length - 1] : {date: '', data: []};
-        this.state = {date: latest.date, rentals: latest.data};
+        this.state = {date: latest.date, data: latest.data};
     }
 
     showByMonth() {
@@ -30,7 +30,7 @@ class ViewScreen extends Component {
             screen: 'meowrental.ViewByMonth',
             title: this.state.date,
             passProps: {
-                data: this.state.rentals,
+                data: this.state.data,
                 date: this.state.date,
             },
             navigatorStyle: {
@@ -40,10 +40,17 @@ class ViewScreen extends Component {
         });
     }
 
-    saveByMonth() {}
+    saveByMonth() {
+        let {data, date} = this.state;
+        this.props.actions.saveByMonth(data, date);
+    }
+
+    saveByMonth() {
+        this.props.actions.saveByFlat();
+    }
 
     changeDate(date, position) {
-        this.setState({date, rentals: this.props.history[position].data || []});
+        this.setState({date, data: this.props.history[position].data || []});
     }
 
     render() {
@@ -62,6 +69,10 @@ class ViewScreen extends Component {
 
                 <TouchableOpacity onPress={this.saveByMonth.bind(this)} activeOpacity={0.9}>
                     <View style={[common.info, styles.viewOption]}><Text style={common.infoText}>{lang.saveByMonth}</Text></View>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={this.saveByFlat.bind(this)} activeOpacity={0.9}>
+                    <View style={[common.info, styles.viewOption]}><Text style={common.infoText}>{lang.saveByFlat}</Text></View>
                 </TouchableOpacity>
 
             </View>
