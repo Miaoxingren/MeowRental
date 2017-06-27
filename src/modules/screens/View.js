@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     Text,
     View,
-    SectionList,
+    TouchableOpacity,
     Picker
 } from 'react-native';
 
@@ -12,6 +12,9 @@ import { connect } from 'react-redux';
 import * as editActions from '../../reducers/edit.action';
 
 import styles from '../styles/View';
+import common from '../styles/Common';
+
+import lang from '../lang';
 
 class ViewScreen extends Component {
     constructor(props) {
@@ -22,12 +25,10 @@ class ViewScreen extends Component {
         this.state = {date: latest.date, rentals: latest.data};
     }
 
-    navTo(navKey) {
-        let nav = EditScren.navs[navKey];
-        if (!nav) return;
+    showByMonth() {
         this.props.navigator.push({
-            screen: nav.screen,
-            title: nav.title,
+            screen: 'meowrental.ViewByMonth',
+            title: this.state.date,
             passProps: {
                 data: this.state.rentals,
                 date: this.state.date,
@@ -39,6 +40,8 @@ class ViewScreen extends Component {
         });
     }
 
+    saveByMonth() {}
+
     changeDate(date, position) {
         this.setState({date, rentals: this.props.history[position].data || []});
     }
@@ -46,13 +49,21 @@ class ViewScreen extends Component {
     render() {
         let {history} = this.props;
         return (
-            <View style={styles.container}>
+            <View style={common.container}>
                 <View style={styles.pickerView}>
                     <Picker style={styles.picker} mode="dropdown" onValueChange={this.changeDate.bind(this)} selectedValue={this.state.date}>
                         {history.map((item) => (<Picker.Item key={item.date} label={item.date} value={item.date} />))}
                     </Picker>
                 </View>
-                
+
+                <TouchableOpacity onPress={this.showByMonth.bind(this)} activeOpacity={0.9}>
+                    <View style={[common.info, styles.viewOption]}><Text style={common.infoText}>{lang.viewByMonth}</Text></View>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={this.saveByMonth.bind(this)} activeOpacity={0.9}>
+                    <View style={[common.info, styles.viewOption]}><Text style={common.infoText}>{lang.saveByMonth}</Text></View>
+                </TouchableOpacity>
+
             </View>
         );
     }

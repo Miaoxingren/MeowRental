@@ -4,6 +4,8 @@ const chinese = {
     viewRental: '查看房租',
     editRental: '编辑房租',
     previewRental: '预览房租',
+    viewByMonth: '查看该月房租',
+    saveByMonth: '保存该月房租',
     floor: '楼',
     flat: '房号',
     colon: '：',

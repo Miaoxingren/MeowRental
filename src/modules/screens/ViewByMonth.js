@@ -18,7 +18,7 @@ class ViewByMonthScreen extends Component {
         return (<ViewItem title={title} rented={rented} rental={rental}/>);
     }
 
-    renderHeader() {
+    renderListHeader() {
         let {date} = this.props;
         return (
             <View>
@@ -30,8 +30,9 @@ class ViewByMonthScreen extends Component {
     render() {
         let {data} = this.props;
         return (
-            <View style={styles.container}>
-                <FlatList data={data}
+            <View>
+                <FlatList style={styles.list}
+                    data={data}
                     renderListHeader={this.renderListHeader.bind(this)}
                     renderItem={this.renderItem.bind(this)}
                     ItemSeparatorComponent={ItemSeparator}/>
