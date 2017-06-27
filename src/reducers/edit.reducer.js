@@ -34,8 +34,7 @@ function history(state = initialState.history, action) {
     switch (action.type) {
 
         case types.HISTORY_PUSH_LATEST:
-            saveAsFile();
-            let latest = generateHistory(action.data, action.date);
+            let latest = {data: action.data, date: action.date};
             if (state && state.length && state[state.length - 1].date === action.date) {
                 return [
                     ...state.slice(0, -1),
@@ -47,39 +46,15 @@ function history(state = initialState.history, action) {
                 latest
             ];
         case types.HISTORY_SAVE_MONTH:
-            let str = formatAsCSV(action.data, action.date);
-            saveAsFile(str, action.date);
+
+            saveAsFile(action.data, action.date);
             return state;
         default:
             return state;
     }
 }
 
-const getFloorNum = (flatNum) => {
-    return flatNum[0] || '0';
-};
-
-const generateHistory = (data, date) => {
-    let floors = [];
-    for (let flat of data) {
-        let floorNum = getFloorNum(flat.title);
-        let floor = floors[floorNum];
-        if (!floor) {
-            floor = floors[floorNum] = [];
-        }
-        floor.push(flat);
-    }
-    let result = [];
-    for (let [index, floor] of Object.entries(floors)) {
-        result.push({
-            data: floor,
-            key: index
-        });
-    }
-    return {data: result, date};
-}
-
-const formatAsCSV = (flats, date) => {
+const formatAsCSV = (data, date) => {
     let result = date + '\n';
     let heads = [
         lang.flat,
@@ -97,7 +72,7 @@ const formatAsCSV = (flats, date) => {
         lang.total
     ];
     result += heads.join(',') + '\n';
-    for (let flat of flats) {
+    for (let flat of data) {
         let {
             title,
             key,
@@ -139,16 +114,17 @@ const formatAsCSV = (flats, date) => {
 };
 
 const RNFS = require('react-native-fs');
-const saveAsFile = (dataStr, fileName) => {
+const saveAsFile = (data, date) => {
+    let dataStr = formatAsCSV(data, date);
 
-    let path = RNFS.ExternalDirectoryPath + '/' + fileName + '.csv';
+    let path = RNFS.ExternalDirectoryPath + '/' + date + '.csv';
 
     RNFS.writeFile(path, dataStr, 'utf8')
         .then((success) => {
-            Alert.alert('FILE WRITTEN!', path);
+            Alert.alert('File saved!', path);
         })
         .catch((err) => {
-            Alert.alert('Error', err.message);
+            Alert.alert('Error!', err.message);
         });
 };
 
@@ -320,7 +296,7 @@ const getModification = (action, flat) => {
 const getPosByFlat = (flats, flatNum) => {
     for (let [index, flat] of Object.entries(flats)) {
         if (flat.title === flatNum) {
-            return index - '';
+            return parseInt(index);
         }
     }
 }
