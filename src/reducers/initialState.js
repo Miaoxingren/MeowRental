@@ -323,7 +323,7 @@ const init = () => {
                 manage,
                 net,
             }
-        }
+        });
     }
     initialState.preview = flats;
 }

@@ -20,15 +20,15 @@ export function editRental(flat, type, val, price) {
 export function generateLatest(data) {
 	return {
 		type: types.HISTORY_PUSH_LATEST,
+        data,
         date: new Date().toISOString().substr(0, 7),
-        data
 	};
 }
 
 export function saveByMonth(data, date) {
     return {
         type: types.HISTORY_SAVE_MONTH,
+        data,
         date,
-        data
     }
 }

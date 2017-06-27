@@ -6,50 +6,37 @@ import {
     Picker
 } from 'react-native';
 
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import ViewItem from '../components/ViewItem';
-import {ItemSeparator} from '../components/Common';
+import * as editActions from '../../reducers/edit.action';
 
 import styles from '../styles/View';
-
-const renderSectionHeader = ({section}) => (
-    <View style={styles.section}>
-        <Text style={styles.sectionText}>{section.key} 楼</Text>
-    </View>
-);
-
-const renderItem = ({item}) => (
-    <ViewItem title={item.title} rented={item.rented} rental={item.rental}/>
-);
-
-const renderHeader = (props) => (
-    <View>
-        <Text>{typeof props}</Text>
-    </View>
-);
-
-const SectionSeparator = () => (
-    <View style={styles.sectionSeparator}></View>
-);
 
 class ViewScreen extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {date: '', rentals: []};
-    }
-
-    componentWillMount() {
-        this.retrieveLatest();
-    }
-
-    retrieveLatest() {
         let {history} = this.props;
-        if (history && history.length) {
-            let latest = history[history.length - 1];
-            this.setState({date: latest.date, rentals: latest.data});
-        }
+        let latest = history && history.length ? history[history.length - 1] : {date: '', data: []};
+        this.state = {date: latest.date, rentals: latest.data};
+    }
+
+    navTo(navKey) {
+        let nav = EditScren.navs[navKey];
+        if (!nav) return;
+        this.props.navigator.push({
+            screen: nav.screen,
+            title: nav.title,
+            passProps: {
+                data: this.state.rentals,
+                date: this.state.date,
+            },
+            navigatorStyle: {
+                tabBarHidden: true,
+                navBarHidden: false,
+            }
+        });
     }
 
     changeDate(date, position) {
@@ -65,37 +52,22 @@ class ViewScreen extends Component {
                         {history.map((item) => (<Picker.Item key={item.date} label={item.date} value={item.date} />))}
                     </Picker>
                 </View>
-                <SectionList
-                    renderSectionHeader={renderSectionHeader}
-                    SectionSeparatorComponent={SectionSeparator}
-                    stickySectionHeadersEnabled={false}
-                    renderListHeader={renderHeader}
-                    renderItem={renderItem}
-                    ItemSeparatorComponent={ItemSeparator}
-                    sections={this.state.rentals}/>
+                
             </View>
         );
     }
 }
 
-const findAllByDate = (rental, date) => {
-    for (let i = 0; i < rental.length; i++) {
-        if (rental[i].date === date) {
-            return i;
-        }
-    }
-};
-
-const extractDate = (rental) => (
-    rental.map((item) => (
-        item.date
-    ))
-);
-
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({history}, ownProps) {
 	return {
-        history: state.history
+        history
 	};
 }
 
-export default connect(mapStateToProps)(ViewScreen);
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(editActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewScreen);
