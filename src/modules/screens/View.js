@@ -45,7 +45,7 @@ class ViewScreen extends Component {
         this.props.actions.saveByMonth(data, date);
     }
 
-    saveByMonth() {
+    saveByFlat() {
         this.props.actions.saveByFlat();
     }
 

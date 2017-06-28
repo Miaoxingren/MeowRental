@@ -7,7 +7,7 @@ const initialState = {
     },
     history: [
         {
-            date: '2017-05',
+            date: '2017-04',
             data: [
                 {
                     title: '101',
@@ -148,7 +148,7 @@ const initialState = {
                 }
             ],
         }, {
-            date: '2017-06',
+            date: '2017-05',
             data: [
                 {
                     title: '201',

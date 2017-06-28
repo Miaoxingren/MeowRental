@@ -46,14 +46,84 @@ function history(state = initialState.history, action) {
                 latest
             ];
         case types.HISTORY_SAVE_MONTH:
-            saveAsFile(action.data, action.date);
+            let dataStr = formatAsCSV(action.data, action.date);
+            saveAsFile(dataStr, action.date);
             return state;
-        case types.HISTORY_SAVE_MONTH:
+        case types.HISTORY_SAVE_FLAT:
+            saveByFlat(state);
             return state;
         default:
             return state;
     }
 }
+
+const saveByFlat = (history) => {
+    let flats = {};
+    let heads = [
+        lang.date,
+        lang.house,
+        lang.manage,
+        lang.net,
+        lang.waterL,
+        lang.waterT,
+        lang.waterUse,
+        lang.water,
+        lang.powerL,
+        lang.powerT,
+        lang.powerUse,
+        lang.power,
+        lang.total
+    ];
+    for (let month of history) {
+        for (let flat of month.data) {
+            flats[flat.title] = flats[flat.title] || flat.title + '\n';
+            flats[flat.title] += formatFlat(flat, month.date);
+        }
+    }
+    for (let [key, val] of Object.entries(flats)) {
+        saveAsFile(val, key);
+    }
+}
+
+const formatFlat = (flat, date) => {
+    let result ='';
+    let {
+        rented,
+        rental,
+    } = flat;
+    let {
+        waterL,
+        waterT,
+        waterUse,
+        water,
+        powerL,
+        powerT,
+        powerUse,
+        power,
+        house,
+        manage,
+        net,
+    } = rental;
+    let total = rented ? water + power + house + manage + net : 0;
+    let row = [
+        date,
+        house,
+        manage,
+        net,
+        waterL,
+        waterT,
+        waterUse,
+        water,
+        powerL,
+        powerT,
+        powerUse,
+        power,
+        total,
+    ];
+    result += row.join(seperator) + '\n';
+    return result;
+};
+
 
 const seperator = ',';
 const formatAsCSV = (data, date) => {
@@ -116,10 +186,8 @@ const formatAsCSV = (data, date) => {
 };
 
 const RNFS = require('react-native-fs');
-const saveAsFile = (data, date) => {
-    let dataStr = formatAsCSV(data, date);
-
-    let path = RNFS.ExternalDirectoryPath + '/' + date + '.csv';
+const saveAsFile = (dataStr, filename) => {
+    let path = RNFS.ExternalDirectoryPath + '/' + filename + '.csv';
 
     RNFS.writeFile(path, dataStr, 'utf8')
         .then((success) => {
