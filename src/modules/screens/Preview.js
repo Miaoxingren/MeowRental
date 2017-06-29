@@ -44,7 +44,6 @@ class PreviewScreen extends Component {
 
     render() {
         let {preview, actions} = this.props;
-        actions.saveByMonth(preview, '2017-06');
         let saveImg = require('../../img/save.png');
         return (
             <View style={styles.preview}>

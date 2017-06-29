@@ -124,7 +124,6 @@ const formatFlat = (flat, date) => {
     return result;
 };
 
-
 const seperator = ',';
 const formatAsCSV = (data, date) => {
     let result = date + '\n';
@@ -200,8 +199,6 @@ const saveAsFile = (dataStr, filename) => {
 
 function preview(state = initialState.preview, action) {
     let pos = getPosByFlat(state, action.flat);
-    if (pos === undefined) return state;
-    let modification = getModification(action, state[pos]);
     switch (action.type) {
         case types.EDIT_RENTAL_RENTED:
         case types.EDIT_RENTAL_WATERL:
@@ -215,15 +212,52 @@ function preview(state = initialState.preview, action) {
         case types.EDIT_RENTAL_HOUSE:
         case types.EDIT_RENTAL_MANAGE:
         case types.EDIT_RENTAL_NET:
+            if (pos === undefined) return state;
+            let modification = getModification(action, state[pos]);
             return [
                 ...state.slice(0, pos),
                 modification,
+                ...state.slice(pos+1),
+            ];
+        case types.EDIT_ADD_FLAT:
+            if (pos) return state;
+            return insertFlat(state, action.flat);
+        case types.EDIT_REMOVE_FLAT:
+            if (pos === undefined) return state;
+            return [
+                ...state.slice(0, pos),
                 ...state.slice(pos+1),
             ];
         default:
             return state;
     }
 }
+
+const insertFlat = (flats, flat) => {
+    let result = [
+        ...flats,
+        {
+            title: flat,
+            key: flat,
+            rented: false,
+            rental: {
+                waterL: 0,
+                waterT: 0,
+                waterUse: 0,
+                water: 0,
+                powerL: 0,
+                powerT: 0,
+                powerUse: 0,
+                power: 0,
+                house: 0,
+                manage: 20,
+                net: 50
+            }
+        }
+    ];
+    result.sort((a, b) => a.title>b.title);
+    return result;
+};
 
 const getModification = (action, flat) => {
     let {type, val, price} = action;

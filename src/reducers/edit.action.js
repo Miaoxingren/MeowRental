@@ -30,11 +30,25 @@ export function saveByMonth(data, date) {
         type: types.HISTORY_SAVE_MONTH,
         data,
         date,
-    }
+    };
 }
 
 export function saveByFlat() {
     return {
         type: types.HISTORY_SAVE_FLAT,
-    }
+    };
+}
+
+export function addFlat(flat) {
+    return {
+        type: types.EDIT_ADD_FLAT,
+        flat
+    };
+}
+
+export function removeFlat(flat) {
+    return {
+        type: types.EDIT_REMOVE_FLAT,
+        flat
+    };
 }

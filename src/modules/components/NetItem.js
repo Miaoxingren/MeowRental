@@ -35,7 +35,7 @@ export default class NetItem extends Component {
                 <View style={common.flexChild}>
                     <Text style={common.rowText}>{this.props.title}</Text>
                 </View>
-                <View style={styles.net}>
+                <View style={[styles.net, common.switch]}>
                     <Switch
                         style={common.switch}
                         onValueChange={this.toggleNet.bind(this)}

@@ -4,6 +4,8 @@ import {
     Text,
     TextInput,
     Switch,
+    TouchableOpacity,
+    Image,
     Alert
 } from 'react-native';
 
@@ -37,13 +39,19 @@ export default class HouseItem extends Component {
         passChange(title, type, val);
     }
 
+    removeFlat() {
+        let {title, removeFlat} = this.props;
+        removeFlat(title);
+    }
+
     render() {
+        let removeIcon = require('../../img/remove.png');
         return (
             <View style={common.flexByRow}>
                 <View style={common.flexChild}>
                     <Text style={common.rowText}>{this.props.title}</Text>
                 </View>
-                <View style={common.flexChild}>
+                <View style={[common.flexChild, common.switch]}>
                     <Switch
                         style={common.switch}
                         onValueChange={this.toggleRented.bind(this)}
@@ -54,6 +62,11 @@ export default class HouseItem extends Component {
                         initVal={this.state.house}
                         style={common.rowText}
                         editable={this.state.rented}/>
+                </View>
+                <View style={styles.removeBox}>
+                    <TouchableOpacity onPress={this.removeFlat.bind(this)} activeOpacity={0.9}>
+                        <Image style={styles.removeImg} source={removeIcon}/>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
