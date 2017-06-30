@@ -282,7 +282,7 @@ const getModification = (action, flat) => {
             };
         case types.EDIT_RENTAL_WATERL:
             waterL = val;
-            waterUse = parseInt(waterT) - parseInt(waterL);
+            waterUse = Math.max(parseInt(waterT) - parseInt(waterL), 1);
             water = Math.round(waterUse * price);
             return {
                 ...flat,
@@ -296,7 +296,7 @@ const getModification = (action, flat) => {
             };
         case types.EDIT_RENTAL_WATERT:
             waterT = val;
-            waterUse = parseInt(waterT) - parseInt(waterL);
+            waterUse = Math.max(parseInt(waterT) - parseInt(waterL), 1);
             water = Math.round(waterUse * price);
             return {
                 ...flat,
@@ -326,7 +326,7 @@ const getModification = (action, flat) => {
             };
         case types.EDIT_RENTAL_POWERL:
             powerL = val;
-            powerUse = parseInt(powerT) - parseInt(powerL);
+            powerUse = Math.max(parseInt(powerT) - parseInt(powerL), 1);
             power = Math.round(powerUse * price);
             return {
                 ...flat,
@@ -340,7 +340,7 @@ const getModification = (action, flat) => {
             };
         case types.EDIT_RENTAL_POWERT:
             powerT = val;
-            powerUse = parseInt(powerT) - parseInt(powerL);
+            powerUse = Math.max(parseInt(powerT) - parseInt(powerL), 1);
             power = Math.round(powerUse * price);
             return {
                 ...flat,
