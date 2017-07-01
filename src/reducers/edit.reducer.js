@@ -283,6 +283,7 @@ const getModification = (action, flat) => {
         case types.EDIT_RENTAL_WATERL:
             waterL = val;
             waterUse = Math.max(parseInt(waterT) - parseInt(waterL), 1);
+            Alert.alert(waterUse);
             water = Math.round(waterUse * price);
             return {
                 ...flat,

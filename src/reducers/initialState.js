@@ -58,7 +58,9 @@ const initialState = {
 };
 
 const init = () => {
-    let {history} = initialState;
+    let {history, single} = initialState;
+    let {water, power} = single;
+    power = Math.round(power);
     let lastMonth = history && history.length ? history[history.length - 1].data : [];
     let flats = [];
     for (let flat of lastMonth) {
@@ -77,12 +79,12 @@ const init = () => {
             rental: {
                 waterL,
                 waterT: waterL,
-                waterUse: 0,
-                water: 0,
+                waterUse: 1,
+                water,
                 powerL,
                 powerT: powerL,
-                powerUse: 0,
-                power: 0,
+                powerUse: 1,
+                power,
                 house,
                 manage,
                 net,
