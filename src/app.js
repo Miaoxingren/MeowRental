@@ -7,7 +7,10 @@ import configureStore from './store/configureStore';
 import initialState from './reducers/initialState';
 import lang from './modules/lang';
 
+import {persistStore} from 'redux-persist';
+
 const store = configureStore(initialState);
+persistStore(store);
 
 registerScreens(store, Provider); // this is where you register all of your app's screens
 
