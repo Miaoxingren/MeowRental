@@ -3,8 +3,10 @@ import {
     View,
     Text,
     TextInput,
-    Switch
+    Switch,
+    Alert
 } from 'react-native';
+import {NumInput} from '../components/Common';
 
 import styles from '../styles/EditByNet'
 import common from '../styles/Common';
@@ -14,12 +16,19 @@ export default class NetItem extends Component {
         super(props);
 
         let {net} = this.props;
-        this.state = { net, neted: net === 50 };
+        this.state = { neted: net !== 0, netText: net + '' };
     }
 
     toggleNet(neted) {
-        let net = neted ? 50 : 0;
-        this.setState({neted, net});
+        let {netDefault} = this.props;
+        let net = neted ? netDefault : 0;
+        this.setState({neted});
+        this.changeNet(net + '');
+    }
+
+    changeNet(netText) {
+        let net = parseInt(netText) || 0;
+        this.setState({netText});
         this.changeValue('net', net);
     }
 
@@ -35,12 +44,18 @@ export default class NetItem extends Component {
                 <View style={common.flexChild}>
                     <Text style={common.rowText}>{this.props.title}</Text>
                 </View>
-                <View style={[styles.net, common.switch]}>
+                <View style={[common.flexChild, styles.net, common.switch]}>
                     <Switch
                         style={common.switch}
                         onValueChange={this.toggleNet.bind(this)}
                         value={this.state.neted}
                         disabled={!rented}/>
+                </View>
+                <View style={[common.flexChild, styles.net]}>
+                    <NumInput passNum={this.changeNet.bind(this)}
+                        initVal={this.state.netText}
+                        style={common.rowText}
+                        editable={this.state.neted}/>
                 </View>
             </View>
         );

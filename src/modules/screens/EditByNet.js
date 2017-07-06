@@ -25,10 +25,11 @@ class EditByNetScreen extends Component {
     }
 
     renderItem({item}) {
+        let {netDefault} = this.props;
         let {title, rented, rental} = item;
         let {net} = rental;
         return (
-            <NetItem title={title} rented={rented} net={net} passChange={this.passChange.bind(this)}/>
+            <NetItem title={title} rented={rented} net={net} passChange={this.passChange.bind(this)} netDefault={netDefault}/>
         );
     }
 
@@ -44,9 +45,10 @@ class EditByNetScreen extends Component {
     }
 }
 
-function mapStateToProps({preview}, ownProps) {
+function mapStateToProps({preview, single}, ownProps) {
 	return {
-		flats: preview
+		flats: preview,
+        netDefault: single.net
 	};
 }
 
