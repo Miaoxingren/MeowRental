@@ -8,9 +8,10 @@ import initialState from './reducers/initialState';
 import lang from './modules/lang';
 
 import {persistStore} from 'redux-persist';
+import {AsyncStorage} from 'react-native'
 
 const store = configureStore(initialState);
-persistStore(store);
+persistStore(store, {storage: AsyncStorage});
 
 registerScreens(store, Provider); // this is where you register all of your app's screens
 
