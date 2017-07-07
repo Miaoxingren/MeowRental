@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
         height: 64,
     },
     shareImg: {
-        width: 32,
-        height: 32,
+        width: 24,
+        height: 24,
     }
 });
 
