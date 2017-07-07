@@ -23,7 +23,7 @@ import common from '../styles/Common';
 import lang from '../lang';
 
 const renderItem = ({item}) => (
-    <ViewItem title={item.title} rented={item.rented} rental={item.rental}/>
+    <ViewItem title={item.title} rented={item.rented} rental={item.rental} date={new Date().toISOString().substr(0, 7)}/>
 );
 
 const keyExtractor = (item, index) => item.title;

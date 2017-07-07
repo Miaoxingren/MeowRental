@@ -11,6 +11,7 @@ const chinese = {
     flat: '房号',
     date: '日期',
     colon: '：',
+    unrented: '未租出',
     waterL: '上月水行度',
     waterT: '本月水行度',
     waterUse: '实际用水',
@@ -38,6 +39,8 @@ const chinese = {
     lastMonth: '上月',
     thisMonth: '本月',
     submit: '提交',
+    shared: '分享成功',
+    unshared: '分享失败',
 };
 
 export default chinese;

@@ -14,8 +14,9 @@ class ViewByMonthScreen extends Component {
     }
 
     renderItem({item}) {
+        let {date} = this.props;
         let {title, rented, rental} = item;
-        return (<ViewItem title={title} rented={rented} rental={rental}/>);
+        return (<ViewItem title={title} rented={rented} rental={rental} date={date}/>);
     }
 
     renderListHeader() {

@@ -37,6 +37,20 @@ const styles = StyleSheet.create({
     item: {
         marginHorizontal: 20,
     },
+    header: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    headerText: {
+        flex: 1,
+        alignItems: 'flex-start',
+    },
+    share: {
+        flex: 1,
+        alignItems: 'flex-end',
+    },
     unrented: {
         backgroundColor: '#808c9e',
         borderTopWidth: 1,
@@ -83,6 +97,10 @@ const styles = StyleSheet.create({
     saveImg: {
         width: 64,
         height: 64,
+    },
+    shareImg: {
+        width: 32,
+        height: 32,
     }
 });
 
