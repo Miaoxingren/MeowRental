@@ -7,3 +7,4 @@ Problem/ToDo
 4. loading hint
 5. render several items of flatlist first
 6. mark down if rental paied
+7. add flat btn

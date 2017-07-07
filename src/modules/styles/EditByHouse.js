@@ -1,18 +1,19 @@
 const styles = {
     listHeader: {
-        margin: 15,
+        marginVertical: 15,
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
     },
     inputBox: {
-        flex: 3,
+        flex: 4,
+        marginLeft: 15,
         backgroundColor: '#fff',
     },
     addBox: {
-        width: 40,
-        alignItems: 'flex-end',
+        flex: 1,
+        alignItems: 'center',
     },
     input: {
         margin: 0,
