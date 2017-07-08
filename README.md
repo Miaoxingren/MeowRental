@@ -2,7 +2,7 @@
 Problem/ToDo
 
 1. UI
-2. add flat and then sort by flat
+2. add flat and then sort by flat (a-b solved)
 3. add flat and input waterL error (caused by alert - solved)
 4. loading hint
 5. render several items of flatlist first

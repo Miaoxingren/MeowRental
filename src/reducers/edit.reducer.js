@@ -257,8 +257,7 @@ const insertFlat = (flats, flat) => {
             }
         }
     ];
-    result.sort((a, b) => a.title>b.title);
-    console.log(result);
+    result.sort((a, b) => a.title-b.title);
     return result;
 };
 
