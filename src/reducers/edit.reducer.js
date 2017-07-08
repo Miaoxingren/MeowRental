@@ -220,7 +220,9 @@ function preview(state = initialState.preview, action) {
                 ...state.slice(pos+1),
             ];
         case types.EDIT_ADD_FLAT:
-            if (pos) return state;
+            if (pos !== undefined) {
+                return state;
+            }
             return insertFlat(state, action.flat);
         case types.EDIT_REMOVE_FLAT:
             if (pos === undefined) return state;
@@ -256,6 +258,7 @@ const insertFlat = (flats, flat) => {
         }
     ];
     result.sort((a, b) => a.title>b.title);
+    console.log(result);
     return result;
 };
 
@@ -283,7 +286,6 @@ const getModification = (action, flat) => {
         case types.EDIT_RENTAL_WATERL:
             waterL = val;
             waterUse = Math.max(parseInt(waterT) - parseInt(waterL), 1);
-            Alert.alert(waterUse);
             water = Math.round(waterUse * price);
             return {
                 ...flat,
