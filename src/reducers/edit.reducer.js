@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import initialState from './initialState';
 import {Alert} from 'react-native';
+import Toast from 'react-native-root-toast';
 import lang from '../modules/lang';
 
 function single(state = initialState.single, action) {
@@ -190,10 +191,24 @@ const saveAsFile = (dataStr, filename) => {
 
     RNFS.writeFile(path, dataStr, 'utf8')
         .then((success) => {
-            Alert.alert('File saved!', path);
+            Toast.show(lang.file.saved, {
+                duration: Toast.durations.LONG,
+                position: Toast.positions.CENTER,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+            });
         })
         .catch((err) => {
-            Alert.alert('Error!', err.message);
+            Toast.show(lang.file.unsaved, {
+                duration: Toast.durations.LONG,
+                position: Toast.positions.CENTER,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+            });
         });
 };
 
@@ -221,6 +236,14 @@ function preview(state = initialState.preview, action) {
             ];
         case types.EDIT_ADD_FLAT:
             if (pos !== undefined) {
+                Toast.show(lang.exist, {
+                    duration: Toast.durations.LONG,
+                    position: Toast.positions.CENTER,
+                    shadow: true,
+                    animation: true,
+                    hideOnPress: true,
+                    delay: 0,
+                });
                 return state;
             }
             return insertFlat(state, action.flat);
