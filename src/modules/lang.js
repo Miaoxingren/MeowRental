@@ -41,6 +41,11 @@ const chinese = {
     submit: '提交',
     shared: '分享成功',
     unshared: '分享失败',
+    file: {
+        saved: '文件保存成功',
+        unsaved: '文件保存失败'
+    },
+    exist: '该房已存在',
 };
 
 export default chinese;
